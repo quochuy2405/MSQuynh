@@ -1,0 +1,58 @@
+.Footer {
+  width: 100%;
+  max-height: fit-content;
+  background-color: rgb(39, 39, 39);
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  & ul {
+    list-style: none;
+    & li {
+      padding: 2px 0;
+      font-size: 0.9rem;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: all linear 0.2s;
+      &:hover {
+        opacity: 1;
+        transition: all linear 0.1s;
+      }
+    }
+  }
+}
+.topFooter {
+  display: flex;
+  flex-wrap: wrap;
+}
+.colName {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+.infoAddress {
+  flex: 1;
+}
+.infoAbout {
+  flex: 1;
+}
+.infoSupport {
+  flex: 1;
+}
+.infoCompany {
+  flex: 1;
+}
+.bottomFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+}
+.copyRight {
+  font-size: 0.9rem;
+}
+.socialMedia {
+  display: flex;
+  gap: 20px;
+  font-size: 2rem;
+}

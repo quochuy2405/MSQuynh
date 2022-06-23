@@ -1,0 +1,99 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  z-index: 99999;
+
+  transition: all linear 0.3s;
+}
+.logo {
+  flex: 3;
+  & > span > span {
+    display: none !important;
+  }
+  & img {
+    display: block;
+    position: relative !important;
+    width: 150px !important;
+    height: 60px !important;
+    margin: auto;
+  }
+}
+.navLinks {
+  flex: 2;
+  display: flex;
+  justify-content: space-around;
+  a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+.btnGroup {
+  flex: 2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.btnLogin {
+  box-shadow: 0 0 0px 2px var(--color-base);
+  border-radius: 6px;
+  color: black;
+  background: linear-gradient(to right, white 50%, var(--color-base) 50%) left;
+  background-size: 200%;
+  transition: all linear 0.2s;
+  &:hover {
+    background-position: 100%;
+    transition: all linear 0.2s;
+    color: white;
+    transform: scale(0.98);
+  }
+}
+.btnRegister {
+  box-shadow: 0 0 0px 2px var(--color-base);
+  border-radius: 6px;
+  color: white;
+
+  background: linear-gradient(to right, var(--color-base) 50%, white 0%) left;
+  background-color: var(--color-base);
+  background-size: 200%;
+  transition: all linear 0.2s;
+  &:hover {
+    background-position: 100%;
+    transition: all linear 0.2s;
+    color: black;
+    transform: scale(0.98);
+  }
+}
+.btnRegister,
+.btnLogin {
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  margin: auto 0;
+  line-height: 40px;
+  text-align: center;
+  font-weight: 600;
+}
+.btnChangeLang {
+  cursor: pointer;
+  width: fit-content;
+  height: 30px;
+  font-weight: 600;
+  & p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+  }
+}
+.onTop {
+  background-color: rgba(255, 255, 255, 0.925);
+  box-shadow: 0 0 4px 2px rgba(138, 138, 138, 0.667);
+  transition: all linear 0.3s;
+}

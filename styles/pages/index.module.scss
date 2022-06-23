@@ -1,0 +1,108 @@
+.heading {
+  text-align: center;
+}
+.overView {
+  padding: 50px;
+  background-color: var(--color-page-background);
+  display: flex;
+  height: calc(100vh - var(--header-height));
+}
+.overViewText {
+  flex: 3;
+  justify-self: center;
+  align-self: center;
+  padding: 5%;
+  .overViewTitle {
+    font-size: 4rem;
+    line-height: normal;
+    font-weight: 700;
+  }
+  .overViewDescription {
+    font-size: 1rem;
+  }
+  .btnRegister {
+    width: 120px;
+    height: 40px;
+    margin: 10px 0;
+    border-radius: 6px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 600;
+
+    box-shadow: 0 0 0px 2px var(--color-base);
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--color-base) 50%, white 0%) left;
+    background-color: var(--color-base);
+    background-size: 200%;
+    transition: all linear 0.2s;
+    &:hover {
+      background-position: 100%;
+      transition: all linear 0.2s;
+      color: black;
+      transform: scale(0.98);
+    }
+  }
+}
+.overViewImage {
+  flex: 2;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.overViewListCourse {
+  width: 75%;
+  margin: 100px auto;
+}
+.titleList {
+  p {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 30px 10px;
+    width: 50%;
+    line-height: normal;
+  }
+}
+.welcome {
+  width: 70%;
+  height: 60vh;
+  margin: 100px auto;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--color-base);
+  border-radius: 40px;
+  opacity: 0.9;
+  .welcomeContent {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+    .welcomeTitle {
+      font-size: 2.5rem;
+      font-weight: bold;
+      line-height: normal;
+    }
+    .welcomeDescription {
+      font-size: 1rem;
+    }
+  }
+
+  .imgContent {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
