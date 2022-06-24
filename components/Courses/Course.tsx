@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import { getLanguage } from '@/i18-next'
-import { Course } from '@/types/interface'
+import type { Course as TCourse } from '@/types/interface'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Styles from './Course.module.scss'
 
 const link = 'https://images.pexels.com/photos/4195504/pexels-photo-4195504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 
-function Course({ name, description, max_vol, current_vol }: Course): JSX.Element {
+function Course({ name, description, max_vol, current_vol, class_code }: TCourse): JSX.Element {
   const { locale } = useRouter()
   const { courses, btn } = getLanguage(locale || 'vi')
   return (
@@ -25,7 +25,10 @@ function Course({ name, description, max_vol, current_vol }: Course): JSX.Elemen
           </Link>
         </div>
         <div className={Styles.contentText}>
-          <p className={Styles.title}>{name}</p>
+          <p className={Styles.title}>
+            {name}
+            {class_code}
+          </p>
           <p className={Styles.description}>{description}</p>
         </div>
       </div>
