@@ -23,7 +23,7 @@
   }
 }
 .btnRegister {
-  @include button_hightContrast(var(--color-base), white, 60px);
+  @include button_hightContrast(var(--color-base), white, 40px);
   width: 80%;
   margin: 20px auto;
   display: block;

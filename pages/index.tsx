@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/link-passhref */
 import { Footer, Header, ListCourse, Metadata } from '@/components'
 import { getLanguage } from '@/i18-next'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import type { Course } from '@/types/interface'
+import type { Course, GlobalContextData } from '@/types/interface'
 import type { NextPage } from '@/types/next'
 import Styles from '@/styles/pages/index.module.scss'
 import Image from 'next/image'
@@ -11,13 +11,15 @@ import Link from 'next/link'
 import teacher from '@/public/imgquynh.png'
 import { getCourses } from '@/firebase'
 import { AnyRecord } from 'dns'
+import { AppCtx } from '@/Context/GlobalContext'
 
 const Home: NextPage = () => {
   const { locale } = useRouter()
   const [courses, setCourses] = useState<Array<Course>>()
   const { overview, btn, home_page } = getLanguage(locale || 'vi')
-
+  const { user } = useContext<GlobalContextData>(AppCtx)
   useEffect(() => {
+    console.log(user)
     const fetch = async () => {
       const courses: Array<any> = await getCourses()
       setCourses(courses)

@@ -6,16 +6,16 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/,
       issuer: {
-        test: /\.(js|ts)x?$/,
+        test: /\.(js|ts)x?$/
         // for webpack 5 use
         // { and: [/\.(js|ts)x?$/] }
       },
 
-      use: ['@svgr/webpack'],
-    });
+      use: ['@svgr/webpack']
+    })
 
-    return config;
-  },
+    return config
+  }
 }
 module.exports = {
   i18n: {
@@ -23,6 +23,7 @@ module.exports = {
     defaultLocale: 'vi'
   },
   nextConfig,
-
+  images: {
+    domains: ['lh3.googleusercontent.com', 'avatars.githubusercontent.com']
+  }
 }
-

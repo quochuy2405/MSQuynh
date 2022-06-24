@@ -1,22 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import DialogLogin from '@/components/Dialog/DialogLogin'
-import Navlink from '@/components/NavLink'
+import { Navlink } from '@/components'
+import { AppCtx } from '@/Context/GlobalContext'
 import { changeLanguage, getLanguage } from '@/i18-next'
 import Logo from '@/public/logo.svg'
 import classnames from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { MdLanguage } from 'react-icons/md'
 import Styles from './Header.module.scss'
+import Image from 'next/image'
 
 function Header(): JSX.Element {
+  const { user } = useContext(AppCtx)
   const router = useRouter()
   const { locale } = router
   const { navlinks, btn } = getLanguage(locale || 'vi')
   const [onTop, setOnTop] = useState<boolean>(false)
   const [login, setLogin] = useState<boolean>(false)
+
   const links = [
     {
       name: navlinks.home,
@@ -54,10 +57,15 @@ function Header(): JSX.Element {
         ))}
       </div>
       <div className={Styles.btnGroup}>
-        <div className={Styles.btnLogin} onClick={() => setLogin(true)}>
-          <p>{btn.login}</p>
-        </div>
-        <Link href={'/register'}>
+        {!user.userId ? (
+          <div className={Styles.btnLogin} onClick={() => setLogin(true)}>
+            <p>{btn.login}</p>
+          </div>
+        ) : (
+          <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} />
+        )}
+
+        <Link href={'/register'} passHref={true}>
           <div className={Styles.btnRegister}>
             <p>{btn.register}</p>
           </div>

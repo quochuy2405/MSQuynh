@@ -20,7 +20,7 @@ function Course({ name, description, max_vol, current_vol, class_code }: TCourse
           <p>
             {courses.count}:{current_vol}/{max_vol}
           </p>
-          <Link href={'/register-form'}>
+          <Link href={`/register-form?classid=${class_code}`}>
             <div className={Styles.btnRegister}>{btn.register}</div>
           </Link>
         </div>

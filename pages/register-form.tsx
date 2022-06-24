@@ -4,8 +4,8 @@ import { createStudent } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { useRouter } from 'next/router'
-import { forwardRef, useState } from 'react'
-import { Box, Checkbox, FormControlLabel, Grow, TextField } from '@mui/material'
+import React, { forwardRef, TextareaHTMLAttributes, useState } from 'react'
+import { Box, Button, Checkbox, FormControlLabel, Grow, TextField } from '@mui/material'
 import type { Course, Student } from '@/types/interface'
 import type { NextPage } from '@/types/next'
 import type { AlertColor, AlertProps } from '@mui/material/Alert'
@@ -30,14 +30,20 @@ const position: SnackbarOrigin = {
 }
 
 const Home: NextPage = () => {
-  const { locale } = useRouter()
+  const { locale, query } = useRouter()
   const { btn, register_page } = getLanguage(locale || 'vi')
   const [open, setOpen] = useState(false)
   const [notice, setNotice] = useState<Notice>({
     message: '',
     type: 'info'
   })
-
+  const [student, setStudent] = useState<Student>({
+    name: '',
+    birth_day: '',
+    phone_number: '',
+    class_code: '',
+    email: ''
+  })
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return
@@ -45,23 +51,28 @@ const Home: NextPage = () => {
     setOpen(false)
   }
 
-  const handelRegister = async () => {
-    const student: Student = {
-      name: 'test',
-      birth_day: 'test',
-      phone_number: 'test',
-      class_code: 'test',
-      email: 'test'
-    }
-    const success = await createStudent(student)
-    setOpen(true)
-    if (success) {
-      setNotice({ message: 'Đăng ký thành công', type: 'success' })
+  const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // set value is required
+    student.birth_day = student.birth_day.split(',')[0]
+    student.class_code = query?.classid
+
+    if (student.class_code && student.name) {
+      const success = await createStudent(student)
+      setOpen(true)
+      if (success) {
+        setNotice({ message: 'Đăng ký thành công', type: 'success' })
+      } else {
+        setNotice({ message: 'Đăng ký thất bại!', type: 'error' })
+      }
     } else {
       setNotice({ message: 'Đăng ký thất bại!', type: 'error' })
     }
   }
 
+  const handleOnchange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setStudent({ ...student, [event.target.name]: event.target.value })
+  }
   return (
     <>
       <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
@@ -71,7 +82,7 @@ const Home: NextPage = () => {
           {notice.message || 'Nothing!!!'}
         </Alert>
       </Snackbar>
-      <div className={classnames(Styles.inputForm, 'body')}>
+      <form method="post" className={classnames(Styles.inputForm, 'body')} onSubmit={handleRegister}>
         <p className={Styles.title}>{btn.register}</p>
         <div className={Styles.groupInput}>
           <Box width={'100%'} flexDirection="column" display={'flex'} gap={'20px'}>
@@ -83,6 +94,7 @@ const Home: NextPage = () => {
                 label={register_page.classCode}
                 variant="outlined"
                 name="class_code"
+                value={query?.classid}
                 disabled
                 fullWidth
                 required
@@ -97,6 +109,8 @@ const Home: NextPage = () => {
                 variant="outlined"
                 className={Styles.nameStudent}
                 name="name"
+                value={student?.name}
+                onChange={(e) => handleOnchange(e)}
                 fullWidth
                 required
               />
@@ -109,6 +123,8 @@ const Home: NextPage = () => {
                 variant="outlined"
                 className={Styles.phoneNumber}
                 name="phone_number"
+                value={student.phone_number}
+                onChange={(e) => handleOnchange(e)}
                 fullWidth
                 required
               />
@@ -117,10 +133,8 @@ const Home: NextPage = () => {
             <MobileDatePicker
               label={register_page.birthDay}
               inputFormat="MM/dd/yyyy"
-              value={new Date(Date.now())}
-              onChange={(e) => {
-                console.log(e)
-              }}
+              value={student?.birth_day}
+              onChange={(e) => setStudent({ ...student, birth_day: new Date(e.getTime()).toLocaleString() })}
               renderInput={(params) => (
                 <div>
                   <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>
@@ -139,16 +153,18 @@ const Home: NextPage = () => {
                 className={Styles.email}
                 placeholder="Email (Nếu có)"
                 name="email"
+                value={student.email}
+                onChange={(e) => handleOnchange(e)}
                 fullWidth
               />
             </Grow>
           </Box>
         </div>
-        <FormControlLabel control={<Checkbox />} label={register_page.agreeTerms} />
-        <div className={Styles.btnRegister} onClick={() => handelRegister()}>
+        <FormControlLabel control={<Checkbox required />} label={register_page.agreeTerms} />
+        <Button className={Styles.btnRegister} type="submit">
           {btn.register}
-        </div>
-      </div>
+        </Button>
+      </form>
       <Footer />
     </>
   )
