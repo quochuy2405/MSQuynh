@@ -1,9 +1,9 @@
 .course {
   flex-basis: 28%;
   height: 180px;
-  background-color: var(--color-base);
   position: relative;
   border-radius: 12px;
+  box-shadow: 0 0 0 3px var(--color-base);
 }
 
 .content {
@@ -26,7 +26,7 @@
     justify-content: space-between;
     p {
       background-color: var(--color-base);
-      width: 80px;
+      width: 100px;
       height: 20px;
       padding: 0 4px;
       line-height: 20px;

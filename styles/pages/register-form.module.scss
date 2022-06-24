@@ -1,0 +1,30 @@
+@use '../abstracts/mixins' as *;
+.inputForm {
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.title {
+  font-size: 3rem;
+  line-height: normal;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 0;
+}
+.groupInput {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  input {
+    width: 100%;
+    height: 40px;
+  }
+}
+.btnRegister {
+  @include button_hightContrast(var(--color-base), white, 60px);
+  width: 80%;
+  margin: 20px auto;
+  display: block;
+}

@@ -1,19 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import Styles from './Header.module.scss'
+import DialogLogin from '@/components/Dialog/DialogLogin'
 import Navlink from '@/components/NavLink'
-import Logo from '@/public/logo.svg'
-import { useRouter } from 'next/router'
 import { changeLanguage, getLanguage } from '@/i18-next'
-import { MdLanguage } from 'react-icons/md'
+import Logo from '@/public/logo.svg'
+import classnames from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import classnames from 'clsx'
+import { MdLanguage } from 'react-icons/md'
+import Styles from './Header.module.scss'
 
 function Header(): JSX.Element {
   const router = useRouter()
   const { locale } = router
-  const { navlinks, btn } = getLanguage(locale)
+  const { navlinks, btn } = getLanguage(locale || 'vi')
+  const [onTop, setOnTop] = useState<boolean>(false)
+  const [login, setLogin] = useState<boolean>(false)
   const links = [
     {
       name: navlinks.home,
@@ -32,13 +35,14 @@ function Header(): JSX.Element {
       link: '/contact'
     }
   ]
-  const [onTop, setOnTop] = useState<boolean>(false)
 
   useEffect(() => {
     window.addEventListener('scroll', () => setOnTop(window.scrollY !== 0))
   }, [])
+
   return (
     <div className={classnames(Styles.header, onTop && Styles.onTop)}>
+      <DialogLogin open={login} setOpen={setLogin} />
       <div className={Styles.logo}>
         <Image src={Logo} alt="logo" />
       </div>
@@ -50,7 +54,7 @@ function Header(): JSX.Element {
         ))}
       </div>
       <div className={Styles.btnGroup}>
-        <div className={Styles.btnLogin}>
+        <div className={Styles.btnLogin} onClick={() => setLogin(true)}>
           <p>{btn.login}</p>
         </div>
         <Link href={'/register'}>
@@ -58,7 +62,7 @@ function Header(): JSX.Element {
             <p>{btn.register}</p>
           </div>
         </Link>
-        <div className={Styles.btnChangeLang} onClick={() => changeLanguage(locale, router)}>
+        <div className={Styles.btnChangeLang} onClick={() => changeLanguage(locale || 'vi', router)}>
           <p>
             <MdLanguage />
             {btn.changeLang}

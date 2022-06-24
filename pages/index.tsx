@@ -1,61 +1,29 @@
 /* eslint-disable @next/next/link-passhref */
 import { Footer, Header, ListCourse, Metadata } from '@/components'
 import { getLanguage } from '@/i18-next'
-import Styles from '@/styles/pages/index.module.scss'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import type { Course } from '@/types/interface'
 import type { NextPage } from '@/types/next'
+import Styles from '@/styles/pages/index.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import teacher from '@/public/imgquynh.png'
-const listCourse: Array<Course> = [
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  }
-]
+import { getCourses } from '@/firebase'
+import { AnyRecord } from 'dns'
 
 const Home: NextPage = () => {
   const { locale } = useRouter()
-  const { overview, btn, home_page } = getLanguage(locale)
+  const [courses, setCourses] = useState<Array<Course>>()
+  const { overview, btn, home_page } = getLanguage(locale || 'vi')
+
+  useEffect(() => {
+    const fetch = async () => {
+      const courses: Array<any> = await getCourses()
+      setCourses(courses)
+    }
+    fetch()
+  }, [])
 
   return (
     <>
@@ -79,7 +47,7 @@ const Home: NextPage = () => {
           <div className={Styles.titleList}>
             <p>{home_page.findTheCourse}</p>
           </div>
-          <ListCourse size={6} list={listCourse} />
+          <ListCourse size={6} list={courses} />
         </div>
         <div className={Styles.welcome}>
           <div className={Styles.welcomeContent}>

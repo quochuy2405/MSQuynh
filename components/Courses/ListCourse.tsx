@@ -11,7 +11,7 @@ function ListCourse({ size, list }: Courses): JSX.Element {
   return (
     <div className={Styles.listCourse}>
       {list?.slice(0, size)?.map((item) => (
-        <Course {...item} key={item.name} />
+        <Course {...item} key={item.name + item.description} />
       ))}
     </div>
   )

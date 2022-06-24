@@ -13,7 +13,7 @@ const SET = {
   },
    btn:{
     login: "Login",
-    register: "Join",
+    register: "Register ",
     sendMail: "Send Email",
     changeLang:"VI"
   },
@@ -28,6 +28,14 @@ const SET = {
     findTheCourse: "Find The Course You Want",
     developQualityTitle: "Develop Your Quality",
     developQualityDes:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime eligendi ex voluptatem aut consectetur hic vitae esse odio tempora"
+  },
+  register_page: {
+    classCode: "Class Code",
+    name: "Student Full Name",
+    phone: "Phone Number",
+    birthDay: "Day of Birth",
+    email: "Email",
+    agreeTerms:"Agree to all terms ?"
   }
 }
 export default SET;

@@ -1,0 +1,36 @@
+.loginGG,
+.loginFB {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 60%;
+  height: 50px;
+  gap: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: all linear 0.2s;
+}
+.loginFB {
+  background-color: #1877f2;
+  color: white;
+  box-shadow: 0 0 0 2px #1877f2;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+    background-color: #006cfa;
+    transition: all linear 0.2s;
+    box-shadow: 0 0 0 2px rgb(38, 38, 38);
+  }
+}
+.loginGG {
+  color: rgb(97, 97, 97);
+  background-color: #ececec;
+  box-shadow: 0 0 0 2px rgb(205, 204, 204);
+  &:hover {
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(38, 38, 38);
+    transition: all linear 0.2s;
+  }
+}

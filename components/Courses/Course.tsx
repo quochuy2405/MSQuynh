@@ -1,28 +1,32 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import { getLanguage } from '@/i18-next'
 import { Course } from '@/types/interface'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Styles from './Course.module.scss'
 
 const link = 'https://images.pexels.com/photos/4195504/pexels-photo-4195504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 
-function Course({ name, description, maxVol, currentVol }: Course): JSX.Element {
+function Course({ name, description, max_vol, current_vol }: Course): JSX.Element {
   const { locale } = useRouter()
-  const { courses, btn } = getLanguage(locale)
+  const { courses, btn } = getLanguage(locale || 'vi')
   return (
     <div className={Styles.course}>
       <div className={Styles.shadow}></div>
       <img src={link} alt="anh" className={Styles.thumbnail} />
       <div className={Styles.content}>
         <div className={Styles.contentNumber}>
-          <p>{courses.count}: 20 </p>
-          <div className={Styles.btnRegister}>{btn.register}</div>
+          <p>
+            {courses.count}:{current_vol}/{max_vol}
+          </p>
+          <Link href={'/register-form'}>
+            <div className={Styles.btnRegister}>{btn.register}</div>
+          </Link>
         </div>
         <div className={Styles.contentText}>
-          <p className={Styles.title}>Khóa học 2022 - Lớp 10</p>
-          <p className={Styles.description}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, consequatur? Unde odit sunt quia ratione{' '}
-          </p>
+          <p className={Styles.title}>{name}</p>
+          <p className={Styles.description}>{description}</p>
         </div>
       </div>
     </div>

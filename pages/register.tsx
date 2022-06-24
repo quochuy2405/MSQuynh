@@ -8,54 +8,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import teacher from '@/public/imgquynh.png'
-const listCourse: Array<Course> = [
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  },
-  {
-    name: 'a',
-    currentVol: 1,
-    description: 'Ab',
-    maxVol: 10
-  }
-]
+const listCourse: Array<Course> = []
 
 const Home: NextPage = () => {
   const { locale } = useRouter()
-  const { overview, btn, home_page } = getLanguage(locale)
+  const { overview, btn, home_page } = getLanguage(locale || 'vi')
 
   return (
     <>

@@ -1,10 +1,9 @@
 import { default as vi } from '@/public/locales/vi/common'
 import { default as en } from '@/public/locales/en/common'
-
-const getLanguage = (locale: any) => {
+const getLanguage = (locale: string) => {
   return locale == 'vi' ? vi : en
 }
-const changeLanguage = (locales: any, router: any) => {
+const changeLanguage = (locales: string, router: any) => {
   switch (locales) {
     case 'vi': {
       router.push('/', '/', { locale: 'en' })
