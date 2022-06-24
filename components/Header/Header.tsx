@@ -11,14 +11,15 @@ import { useContext, useEffect, useState } from 'react'
 import { MdLanguage } from 'react-icons/md'
 import Styles from './Header.module.scss'
 import Image from 'next/image'
+import { logoutUser } from '@/firebase'
+import { getAuth } from 'firebase/auth'
 
 function Header(): JSX.Element {
-  const { user } = useContext(AppCtx)
+  const { user, setUser, login, setLogin } = useContext(AppCtx)
   const router = useRouter()
   const { locale } = router
   const { navlinks, btn } = getLanguage(locale || 'vi')
   const [onTop, setOnTop] = useState<boolean>(false)
-  const [login, setLogin] = useState<boolean>(false)
 
   const links = [
     {
@@ -38,6 +39,23 @@ function Header(): JSX.Element {
       link: '/contact'
     }
   ]
+  useEffect(() => {
+    getAuth().onAuthStateChanged((u) => {
+      if (u) {
+        setUser({
+          name: u.displayName,
+          url: u.photoURL,
+          userId: u.uid
+        })
+      } else {
+        setUser({
+          name: '',
+          url: '',
+          userId: ''
+        })
+      }
+    })
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', () => setOnTop(window.scrollY !== 0))
@@ -62,14 +80,13 @@ function Header(): JSX.Element {
             <p>{btn.login}</p>
           </div>
         ) : (
-          <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} />
+          <>
+            <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} />
+            <div className={Styles.btnRegister} onClick={() => logoutUser()}>
+              <p>{btn.logout}</p>
+            </div>
+          </>
         )}
-
-        <Link href={'/register'} passHref={true}>
-          <div className={Styles.btnRegister}>
-            <p>{btn.register}</p>
-          </div>
-        </Link>
         <div className={Styles.btnChangeLang} onClick={() => changeLanguage(locale || 'vi', router)}>
           <p>
             <MdLanguage />

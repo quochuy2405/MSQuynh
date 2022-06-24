@@ -1,93 +1,12 @@
-.course {
-  flex-basis: 28%;
-  height: 180px;
-  position: relative;
-  border-radius: 12px;
-  box-shadow: 0 0 0 3px var(--color-base);
-}
-
-.content {
-  display: flex;
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  top: 0;
-  z-index: 10;
-  padding: 10px;
-
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  color: white;
-  .contentNumber {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    p {
-      background-color: var(--color-base);
-      width: 100px;
-      height: 20px;
-      padding: 0 4px;
-      line-height: 20px;
-      text-align: center;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      box-shadow: 0 0 0 2px rgb(251, 251, 251);
-      margin: 10px;
-      color: white;
-      font-weight: 600;
-    }
-  }
-  .contentText {
-    .title {
-      font-size: 1.1rem;
-      font-weight: bold;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .description {
-      font-size: 0.8rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-}
-.thumbnail {
-  z-index: 1;
-  border-radius: 12px;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.shadow {
-  z-index: 2;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50%;
-  border-radius: 0 0 12px 12px;
-  object-fit: cover;
-  background-image: linear-gradient(to top, rgb(49, 49, 49), rgba(128, 128, 128, 0.001));
-}
 .btnRegister {
   background-color: var(--color-base);
-  width: 60px;
-  height: 20px;
-  line-height: 20px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
   text-align: center;
   border-radius: 4px;
-  font-size: 0.7rem;
-  box-shadow: 0 0 0 2px rgb(251, 251, 251);
-  margin: 10px;
+  font-size: 0.9rem;
+  margin-top: 10px;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -100,5 +19,6 @@
     transition: all linear 0.2s;
     color: black;
     transform: scale(0.98);
+    box-shadow: 0 0 0 2px var(--color-base);
   }
 }

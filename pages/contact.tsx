@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import teacher from '@/public/imgquynh.png'
 const listCourse: Array<Course> = []
 
-const Home: NextPage = () => {
+const Register: NextPage = () => {
   const { locale } = useRouter()
   const { overview, btn, home_page } = getLanguage(locale || 'vi')
 
@@ -53,4 +53,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Register

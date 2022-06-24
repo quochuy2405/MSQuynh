@@ -13,9 +13,35 @@
   align-self: center;
   padding: 5%;
   .overViewTitle {
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: normal;
     font-weight: 700;
+  }
+  .overViewDescription {
+    font-size: 1rem;
+  }
+  .btnRegister {
+    width: 120px;
+    height: 40px;
+    margin: 10px 0;
+    border-radius: 6px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 600;
+
+    box-shadow: 0 0 0px 2px var(--color-base);
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--color-base) 50%, white 0%) left;
+    background-color: var(--color-base);
+    background-size: 200%;
+    transition: all linear 0.2s;
+    &:hover {
+      background-position: 100%;
+      transition: all linear 0.2s;
+      color: black;
+      transform: scale(0.98);
+    }
   }
 }
 .overViewImage {

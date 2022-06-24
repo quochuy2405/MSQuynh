@@ -1,28 +1,28 @@
 /* eslint-disable @next/next/link-passhref */
 import { Footer, Header, ListCourse, Metadata } from '@/components'
+import { AppCtx } from '@/Context/GlobalContext'
+import { getCourses } from '@/firebase'
 import { getLanguage } from '@/i18-next'
-import { useContext, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import type { Course, GlobalContextData } from '@/types/interface'
-import type { NextPage } from '@/types/next'
+import teacher from '@/public/imgquynh.png'
 import Styles from '@/styles/pages/index.module.scss'
+import type { Course } from '@/types/interface'
+import type { NextPage } from '@/types/next'
 import Image from 'next/image'
 import Link from 'next/link'
-import teacher from '@/public/imgquynh.png'
-import { getCourses } from '@/firebase'
-import { AnyRecord } from 'dns'
-import { AppCtx } from '@/Context/GlobalContext'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 
 const Home: NextPage = () => {
   const { locale } = useRouter()
   const [courses, setCourses] = useState<Array<Course>>()
+  const { setLoadingCourse } = useContext(AppCtx)
   const { overview, btn, home_page } = getLanguage(locale || 'vi')
-  const { user } = useContext<GlobalContextData>(AppCtx)
   useEffect(() => {
-    console.log(user)
+    setLoadingCourse(false)
     const fetch = async () => {
-      const courses: Array<any> = await getCourses()
+      const courses: Array<Course | any> = await getCourses()
       setCourses(courses)
+      setLoadingCourse(true)
     }
     fetch()
   }, [])

@@ -12,19 +12,14 @@ interface Student {
   phone_number: string
   class_code: string | unknown
   email: string
+  user_id: string | unknown
 }
 
 interface User {
+  [x: string]: unknown
   userId: string | null
   name: string | null
-  author: string | null
   url: string | null
-}
-
-interface GlobalContextData {
-  user: User
-  author: string
-  url: string
 }
 
 interface ImageType {
@@ -34,4 +29,4 @@ interface ImageType {
   height?: string | number | undefined
   layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive' | 'raw' | undefined
 }
-export type { Student, Course, User, GlobalContextData, ImageType }
+export type { Student, Course, User, ImageType }

@@ -8,9 +8,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import teacher from '@/public/imgquynh.png'
+import { Step, StepLabel, Stepper } from '@mui/material'
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from '@mui/lab'
 const listCourse: Array<Course> = []
 
-const Home: NextPage = () => {
+const steps = ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad']
+
+const About: NextPage = () => {
   const { locale } = useRouter()
   const { overview, btn, home_page } = getLanguage(locale || 'vi')
 
@@ -20,16 +24,28 @@ const Home: NextPage = () => {
       <Header />
       <div className="body">
         <div className={Styles.overView}>
-          <div className={Styles.overViewText}>
-            <p className={Styles.overViewTitle}>{overview.title} </p>
-            <p className={Styles.overViewDescription}>{overview.description}</p>
-            <Link href={'/register'}>
-              <p className={Styles.btnRegister}> {btn.register}</p>
-            </Link>
-          </div>
-          <div className={Styles.overViewImage}>
-            <img src={'https://teachenglish.vus.edu.vn/wp-content/uploads/2022/04/Group-12816@2x.jpg'} alt="" />
-          </div>
+          <Stepper alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          <Timeline position="alternate">
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot variant="outlined" />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Secondary</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot variant="outlined" />
+              </TimelineSeparator>
+              <TimelineContent>Success</TimelineContent>
+            </TimelineItem>
+          </Timeline>
         </div>
 
         <div className={Styles.overViewListCourse}>
@@ -53,4 +69,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default About

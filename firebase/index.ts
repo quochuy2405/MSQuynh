@@ -2,8 +2,8 @@
 // import { Student } from '@/types/interface'
 import type { Student } from '@/types/interface'
 import { initializeApp } from 'firebase/app'
-import { doc, collection, getDocs, getFirestore, setDoc } from 'firebase/firestore/lite'
-import { GoogleAuthProvider, getAuth, signInWithPopup, FacebookAuthProvider } from 'firebase/auth'
+import { doc, collection, getDocs, getFirestore, setDoc, query, where } from 'firebase/firestore/lite'
+import { GoogleAuthProvider, getAuth, signInWithPopup, FacebookAuthProvider, signOut } from 'firebase/auth'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,15 +42,27 @@ const getCourses = async () => {
 const autoGenerateId = () => {
   return 'QH' + Date.now()
 }
+// check course exit
+
 // create Student
 const createStudent = async (student: Student) => {
   try {
     if (!student) {
       return false
     }
-    const cityRef = doc(db, 'students', student.class_code + autoGenerateId())
-    await setDoc(cityRef, student)
-    return true
+    const queryCheckStudent = query(
+      collection(db, 'students'),
+      where('user_id', '==', student.user_id),
+      where('class_code', '==', student.class_code)
+    )
+    const studentIsExit = await getDocs(queryCheckStudent)
+    if (!studentIsExit.size) {
+      const cityRef = doc(db, 'students', student.class_code + autoGenerateId())
+      await setDoc(cityRef, student)
+      return true
+    } else {
+      return null
+    }
   } catch {
     return false
   }
@@ -77,4 +89,16 @@ const loginFaceBook = async () => {
     return null
   }
 }
-export { getCourses, createStudent, loginGoogle, loginFaceBook }
+
+const logoutUser = async () => {
+  try {
+    const auth = getAuth()
+    const response = await signOut(auth)
+    if (response != null) return true
+    return false
+  } catch (error) {
+    return null
+  }
+}
+
+export { getCourses, createStudent, loginGoogle, loginFaceBook, logoutUser }
