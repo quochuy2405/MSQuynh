@@ -175,9 +175,9 @@ const RegisterFrom: NextPage = () => {
           }
           label={register_page.agreeTerms}
         />
-        <Button className={Styles.btnRegister} type="submit">
+        <button className={Styles.btnRegister} type="submit">
           {btn.register}
-        </Button>
+        </button>
       </form>
       <Footer />
     </>
