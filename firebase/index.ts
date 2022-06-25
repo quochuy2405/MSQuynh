@@ -3,7 +3,7 @@
 import type { Course, Student, User } from '@/types/interface'
 import { initializeApp } from 'firebase/app'
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import type { PartialWithFieldValue } from 'firebase/firestore/lite'
+import type { DocumentData, FirestoreDataConverter, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore/lite'
 import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -28,13 +28,29 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-
+// converse type
+const userConverter: FirestoreDataConverter<User> = {
+  toFirestore(post: User): DocumentData {
+    return { ...post }
+  },
+  fromFirestore(docSnap: QueryDocumentSnapshot): User {
+    return docSnap.data() as User
+  }
+}
+const courseConverter: FirestoreDataConverter<Course> = {
+  toFirestore(post: Course): DocumentData {
+    return { ...post }
+  },
+  fromFirestore(docSnap: QueryDocumentSnapshot): Course {
+    return docSnap.data() as Course
+  }
+}
 // Get a list of cities from your database
 const getCourses = async () => {
-  const citiesCol = collection(db, 'courses')
+  const citiesCol = collection(db, 'courses').withConverter(courseConverter)
   const citySnapshot = await getDocs(citiesCol)
   const cityList = citySnapshot.docs.map((doc) => doc.data())
-  const listCourses = cityList.reduce((list: Array<unknown>, itemCurrent) => {
+  const listCourses = cityList.reduce((list: Array<Course>, itemCurrent) => {
     return [...list, itemCurrent]
   }, [])
   return listCourses
@@ -69,13 +85,14 @@ const createStudent = async (student: Student) => {
   }
 }
 //find course by id user
+
 const getCourseById = async (user: Partial<User>) => {
   const queryCheckStudent = query(collection(db, 'students'), where('user_id', '==', user.userId))
   const listCourses = await getDocs(queryCheckStudent)
   const courseStudent: Array<Course> = []
   for (let i = 0; i < listCourses.size; i++) {
     const student = listCourses.docs.at(i)?.data()
-    const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1))
+    const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1)).withConverter(courseConverter)
     const courses = await getDocs(getCourse)
     const course: PartialWithFieldValue<unknown | any> = courses.docs.at(0)?.data()
     courseStudent.push(course)

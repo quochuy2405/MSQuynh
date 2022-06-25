@@ -26,5 +26,6 @@
   @include button_hightContrast(var(--color-base), white, 40px);
   width: 80%;
   margin: 20px auto;
+  color: white;
   display: block;
 }

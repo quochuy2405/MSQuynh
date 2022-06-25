@@ -11,9 +11,9 @@ const Footer = (): JSX.Element => {
             <p className={Styles.colName}>
               <Image src={Logo} alt="Logo " />
             </p>
-            <li>Phone number: 0963639201</li>
-            <li>Email: contact@learningcode.io</li>
-            <li>Address: KP6 - Linh Trung - Thu Duc - Ho Chi Minh City</li>
+            <li>Phone number: 09636392012</li>
+            <li>Email: contactmsquynh@gmail.com</li>
+            <li>Address: Xã Ia Sươm - Krông Pa - Gia Lai</li>
           </ul>
         </div>
         <div className={Styles.infoAbout}>
@@ -42,7 +42,7 @@ const Footer = (): JSX.Element => {
         </div>
       </div>
       <div className={Styles.bottomFooter}>
-        <div className={Styles.copyRight}>© 2022 - 2026 LNC. All rights reserved.</div>
+        <div className={Styles.copyRight}>© 2022HuyPui</div>
         <div className={Styles.socialMedia}>
           <ImYoutube2 />
 

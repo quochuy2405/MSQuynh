@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     setLoadingCourse(false)
     const fetch = async () => {
-      const courses: Array<Course | any> = await getCourses()
+      const courses: Array<Course> = await getCourses()
       setCourses(courses)
       setLoadingCourse(true)
     }

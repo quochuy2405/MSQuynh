@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Navlink, UserMenu } from '@/components'
+import { Navlink, AccountMenu } from '@/components'
 import DialogLogin from '@/components/Dialog/DialogLogin'
 import { AppCtx } from '@/Context/GlobalContext'
 import { logoutUser } from '@/firebase'
@@ -81,7 +81,7 @@ function Header(): JSX.Element {
         ) : (
           <>
             {/* <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} /> */}
-            <UserMenu user={user} />
+            <AccountMenu user={user} />
             <div className={Styles.btnRegister} onClick={() => logoutUser()}>
               <p>{btn.logout}</p>
             </div>
