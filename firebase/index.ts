@@ -1,9 +1,10 @@
 // Import the functions you need from the SDKs you need
 // import { Student } from '@/types/interface'
-import type { Student } from '@/types/interface'
+import type { Course, Student, User } from '@/types/interface'
 import { initializeApp } from 'firebase/app'
-import { doc, collection, getDocs, getFirestore, setDoc, query, where } from 'firebase/firestore/lite'
-import { GoogleAuthProvider, getAuth, signInWithPopup, FacebookAuthProvider, signOut } from 'firebase/auth'
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import type { PartialWithFieldValue } from 'firebase/firestore/lite'
+import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -67,6 +68,21 @@ const createStudent = async (student: Student) => {
     return false
   }
 }
+//find course by id user
+const getCourseById = async (user: Partial<User>) => {
+  const queryCheckStudent = query(collection(db, 'students'), where('user_id', '==', user.userId))
+  const listCourses = await getDocs(queryCheckStudent)
+  const courseStudent: Array<Course> = []
+  for (let i = 0; i < listCourses.size; i++) {
+    const student = listCourses.docs.at(i)?.data()
+    const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1))
+    const courses = await getDocs(getCourse)
+    const course: PartialWithFieldValue<unknown | any> = courses.docs.at(0)?.data()
+    courseStudent.push(course)
+  }
+
+  return courseStudent
+}
 // authetication
 const loginGoogle = async () => {
   try {
@@ -101,4 +117,4 @@ const logoutUser = async () => {
   }
 }
 
-export { getCourses, createStudent, loginGoogle, loginFaceBook, logoutUser }
+export { getCourses, createStudent, loginGoogle, loginFaceBook, logoutUser, getCourseById }

@@ -1,18 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
+import { Navlink, UserMenu } from '@/components'
 import DialogLogin from '@/components/Dialog/DialogLogin'
-import { Navlink } from '@/components'
 import { AppCtx } from '@/Context/GlobalContext'
+import { logoutUser } from '@/firebase'
 import { changeLanguage, getLanguage } from '@/i18-next'
 import Logo from '@/public/logo.svg'
 import classnames from 'clsx'
-import Link from 'next/link'
+import { getAuth } from 'firebase/auth'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { MdLanguage } from 'react-icons/md'
 import Styles from './Header.module.scss'
-import Image from 'next/image'
-import { logoutUser } from '@/firebase'
-import { getAuth } from 'firebase/auth'
 
 function Header(): JSX.Element {
   const { user, setUser, login, setLogin } = useContext(AppCtx)
@@ -81,7 +80,8 @@ function Header(): JSX.Element {
           </div>
         ) : (
           <>
-            <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} />
+            {/* <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} /> */}
+            <UserMenu user={user} />
             <div className={Styles.btnRegister} onClick={() => logoutUser()}>
               <p>{btn.logout}</p>
             </div>
