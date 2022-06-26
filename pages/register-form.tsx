@@ -15,6 +15,7 @@ import classnames from 'clsx'
 import MuiAlert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import { AppCtx } from '@/Context/GlobalContext'
+import { DatePicker } from '@mui/lab'
 
 interface Notice {
   message: string
@@ -41,7 +42,7 @@ const RegisterFrom: NextPage = () => {
   })
   const [student, setStudent] = useState<Student>({
     name: '',
-    birth_day: '',
+    birth_day: new Date(Date.now()),
     phone_number: '',
     class_code: '',
     email: '',
@@ -128,9 +129,9 @@ const RegisterFrom: NextPage = () => {
               />
             </Grow>
 
-            <MobileDatePicker
+            <DatePicker
               label={register_page.birthDay}
-              inputFormat="MM/dd/yyyy"
+              inputFormat="dd/MM/yyyy"
               value={student?.birth_day}
               onChange={(e) => setStudent({ ...student, birth_day: new Date(e?.getTime() || '').toLocaleString() })}
               renderInput={(params) => (

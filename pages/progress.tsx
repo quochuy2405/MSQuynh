@@ -30,7 +30,7 @@ const Register: NextPage = () => {
       <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
       <Header />
       <div className="body">
-        <TableContainer style={{ margin: '100px auto', width: '75%' }}>
+        <TableContainer style={{ margin: '100px auto', width: '75%', minHeight: '60vh' }}>
           {!loading ? (
             <Box>
               <Skeleton />
@@ -47,11 +47,9 @@ const Register: NextPage = () => {
                     Tên khóa học
                   </TableCell>
                   <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
-                    Thời gian đăng ký
+                    Thời gian khai giảng
                   </TableCell>
-                  <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
-                    Số lượng
-                  </TableCell>
+
                   <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
                     Tình trang đăng ký
                   </TableCell>
@@ -68,7 +66,7 @@ const Register: NextPage = () => {
                     </TableCell>
                     <TableCell align="right">{row?.name}</TableCell>
                     <TableCell align="right">{row?.max_vol}</TableCell>
-                    <TableCell align="right">{row?.current_vol}</TableCell>
+
                     <TableCell align="right">Chưa xác nhận</TableCell>
                     <TableCell align="right">
                       <IconButton aria-label="delete" size="large">
