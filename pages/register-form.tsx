@@ -47,7 +47,8 @@ const RegisterFrom: NextPage = () => {
     phone_number: '',
     class_code: '',
     email: '',
-    user_id: ''
+    user_id: '',
+    status: 0
   })
   useEffect(() => {
     if (!user.userId) router.push('/')

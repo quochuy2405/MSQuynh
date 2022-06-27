@@ -13,6 +13,7 @@ interface Student {
   class_code: string | unknown
   email: string
   user_id: string | unknown
+  status: number
 }
 
 interface User {
