@@ -97,7 +97,7 @@ const getCourseById = async (user: Partial<User>) => {
     const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1)).withConverter(courseConverter)
     const courses = await getDocs(getCourse)
     const course: PartialWithFieldValue<unknown | any> = courses.docs.at(0)?.data()
-    courseStudent.push(course)
+    if (course) courseStudent.push(course)
   }
 
   return courseStudent

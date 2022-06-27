@@ -5,6 +5,7 @@ interface Course {
   current_vol?: number
   class_code: string
   thumbnail: string
+  date_open: string
 }
 interface Student {
   name: string

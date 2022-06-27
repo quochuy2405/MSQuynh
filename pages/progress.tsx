@@ -5,8 +5,7 @@ import { getCourseById } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import type { Course } from '@/types/interface'
 import type { NextPage } from '@/types/next'
-import { Box, Grow, IconButton, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import Zoom from '@mui/material/Zoom'
+import { Box, IconButton, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { VscTrash } from 'react-icons/vsc'
@@ -20,6 +19,7 @@ const Register: NextPage = () => {
   useEffect(() => {
     const fetch = async () => {
       const courses = await getCourseById(user)
+      console.log(courses)
       setListCode(courses)
       setLoading(true)
     }
@@ -60,12 +60,12 @@ const Register: NextPage = () => {
               </TableHead>
               <TableBody>
                 {listCourse.map((row: Course) => (
-                  <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableRow key={row?.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th" scope="row">
                       {row?.class_code}
                     </TableCell>
                     <TableCell align="right">{row?.name}</TableCell>
-                    <TableCell align="right">{row?.max_vol}</TableCell>
+                    <TableCell align="right">{row?.date_open}</TableCell>
 
                     <TableCell align="right">Chưa xác nhận</TableCell>
                     <TableCell align="right">
