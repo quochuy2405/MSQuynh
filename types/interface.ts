@@ -6,6 +6,7 @@ interface Course {
   class_code: string
   thumbnail: string
   date_open: string
+  created_date: string
 }
 interface Student {
   name: string
@@ -15,6 +16,7 @@ interface Student {
   email: string
   user_id: string | unknown
   status: number
+  created_date: string
 }
 
 interface User {

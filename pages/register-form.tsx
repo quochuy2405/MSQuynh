@@ -48,7 +48,8 @@ const RegisterFrom: NextPage = () => {
     class_code: '',
     email: '',
     user_id: '',
-    status: 0
+    status: 0,
+    created_date: ''
   })
   useEffect(() => {
     if (!user.userId) router.push('/')
@@ -63,12 +64,23 @@ const RegisterFrom: NextPage = () => {
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     // set value is required
-    student.birth_day = student.birth_day.split(',')[0]
+    const dateNow = new Date(Date.now())
+    const dateStore = student.birth_day
+
     student.class_code = query?.classid
     student.user_id = user.userId
+
     if (student.class_code && student.name && student.user_id) {
+      const createdDate = `${dateNow.getDate()}/${dateNow.getMonth() + 1}/${dateNow.getFullYear()}`
+      const birthDate = `${student.birth_day.getDate()}/${student.birth_day.getMonth() + 1}/${student.birth_day.getFullYear()}`
+
+      student.birth_day = birthDate
+      student.created_date = createdDate
+      console.log(student)
       const success = await createStudent(student)
+
       setOpen(true)
+
       if (success) {
         setNotice({ message: 'Đăng ký thành công', type: 'success' })
       } else {
@@ -78,6 +90,7 @@ const RegisterFrom: NextPage = () => {
     } else {
       setNotice({ message: 'Đăng ký thất bại!', type: 'error' })
     }
+    student.birth_day = dateStore
   }
 
   const handleOnchange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -138,7 +151,13 @@ const RegisterFrom: NextPage = () => {
               label={register_page.birthDay}
               inputFormat="dd/MM/yyyy"
               value={student?.birth_day}
-              onChange={(e) => setStudent({ ...student, birth_day: new Date(e?.getTime() || '').toLocaleString() })}
+              ignoreInvalidInputs={false}
+              onChange={(e) => {
+                setStudent({
+                  ...student,
+                  birth_day: e
+                })
+              }}
               renderInput={(params) => (
                 <div>
                   <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>

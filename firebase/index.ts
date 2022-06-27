@@ -72,7 +72,8 @@ const createStudent = async (student: Student) => {
     const queryCheckStudent = query(
       collection(db, 'students'),
       where('user_id', '==', student.user_id),
-      where('class_code', '==', student.class_code)
+      where('class_code', '==', student.class_code),
+      where('name', '==', student.name)
     )
     const studentIsExit = await getDocs(queryCheckStudent)
     if (!studentIsExit.size) {
