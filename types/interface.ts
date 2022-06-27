@@ -4,7 +4,7 @@ interface Course {
   max_vol?: number
   current_vol?: number
   class_code: string
-  thumbnail?: string
+  thumbnail: string
 }
 interface Student {
   name: string

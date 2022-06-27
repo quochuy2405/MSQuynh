@@ -4,7 +4,7 @@ import { createStudent } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { useRouter } from 'next/router'
-import React, { forwardRef, TextareaHTMLAttributes, useContext, useState } from 'react'
+import React, { forwardRef, TextareaHTMLAttributes, useContext, useEffect, useState } from 'react'
 import { Box, Button, Checkbox, FormControlLabel, Grow, TextField } from '@mui/material'
 import type { Course, Student } from '@/types/interface'
 import type { NextPage } from '@/types/next'
@@ -32,7 +32,8 @@ const position: SnackbarOrigin = {
 }
 
 const RegisterFrom: NextPage = () => {
-  const { locale, query } = useRouter()
+  const router = useRouter()
+  const { locale, query } = router
   const { user } = useContext(AppCtx)
   const { btn, register_page } = getLanguage(locale || 'vi')
   const [open, setOpen] = useState(false)
@@ -48,6 +49,9 @@ const RegisterFrom: NextPage = () => {
     email: '',
     user_id: ''
   })
+  useEffect(() => {
+    if (!user.userId) router.push('/')
+  }, [router, user])
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return

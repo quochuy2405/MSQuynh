@@ -1,20 +1,30 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import { AppCtx } from '@/Context/GlobalContext'
+import { storage } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import type { Course as TCourse } from '@/types/interface'
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
-import { Router, useRouter } from 'next/router'
-import { useContext } from 'react'
+import { getDownloadURL, ref } from 'firebase/storage'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useState } from 'react'
 import Styles from './Course.module.scss'
 
-const link = 'https://images.pexels.com/photos/4195504/pexels-photo-4195504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+const link = 'https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2019/10/23170637/Graphic-Design-Courses.jpg'
 
 function Course({ name, description, max_vol, current_vol, class_code, thumbnail }: TCourse): JSX.Element {
   const router = useRouter()
   const { locale } = router
   const { courses, btn } = getLanguage(locale || 'vi')
   const { user, setLogin } = useContext(AppCtx)
+  const [url, setUrl] = useState('')
+  useEffect(() => {
+    getDownloadURL(ref(storage, `imageProducts/${thumbnail}`))
+      .then((url: string) => setUrl(url))
+      .catch(() => {
+        return ''
+      })
+  }, [])
   const gotoRegister = () => {
     if (user.userId) {
       router.push(`/register-form?classid=${class_code}`)
@@ -22,10 +32,11 @@ function Course({ name, description, max_vol, current_vol, class_code, thumbnail
       setLogin(true)
     }
   }
+
   return (
     <Card sx={{ minWidth: 345 }}>
       <CardActionArea>
-        <CardMedia component="img" height="140" image={link} alt={name} />
+        <CardMedia component="img" height="140" image={url || link} alt={name} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}

@@ -5,6 +5,7 @@ import { initializeApp } from 'firebase/app'
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import type { DocumentData, FirestoreDataConverter, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore/lite'
 import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
+import { getDownloadURL, getStorage, ref } from 'firebase/storage'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -27,6 +28,7 @@ const firebaseConfig = {
 }
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
+const storage = getStorage()
 const db = getFirestore(app)
 // converse type
 const userConverter: FirestoreDataConverter<User> = {
@@ -122,7 +124,7 @@ const loginFaceBook = async () => {
     return null
   }
 }
-
+// log out user
 const logoutUser = async () => {
   try {
     const auth = getAuth()
@@ -133,5 +135,6 @@ const logoutUser = async () => {
     return null
   }
 }
+// get URL by image name
 
-export { getCourses, createStudent, loginGoogle, loginFaceBook, logoutUser, getCourseById }
+export { getCourses, createStudent, loginGoogle, loginFaceBook, logoutUser, getCourseById, storage }
