@@ -7,6 +7,7 @@ interface Course {
   thumbnail: string
   date_open: string
   created_date: string
+  status?: number
 }
 interface Student {
   name: string

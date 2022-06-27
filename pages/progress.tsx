@@ -5,11 +5,12 @@ import { getCourseById } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import type { Course } from '@/types/interface'
 import type { NextPage } from '@/types/next'
-import { Box, IconButton, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Box, Button, IconButton, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { VscTrash } from 'react-icons/vsc'
-
+import { BsCheck2Circle } from 'react-icons/bs'
+import { AiOutlineFieldTime } from 'react-icons/ai'
 const Register: NextPage = () => {
   const { locale } = useRouter()
   const { user } = useContext(AppCtx)
@@ -19,12 +20,11 @@ const Register: NextPage = () => {
   useEffect(() => {
     const fetch = async () => {
       const courses = await getCourseById(user)
-      console.log(courses)
       setListCode(courses)
       setLoading(true)
     }
     fetch()
-  }, [user.userId])
+  }, [user?.userId])
   return (
     <>
       <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
@@ -59,19 +59,29 @@ const Register: NextPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {listCourse.map((row: Course) => (
-                  <TableRow key={row?.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                {listCourse.map((course: Course) => (
+                  <TableRow key={course?.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th" scope="row">
-                      {row?.class_code}
+                      {course?.class_code}
                     </TableCell>
-                    <TableCell align="right">{row?.name}</TableCell>
-                    <TableCell align="right">{row?.date_open}</TableCell>
-
-                    <TableCell align="right">Chưa xác nhận</TableCell>
+                    <TableCell align="right">{course?.name}</TableCell>
+                    <TableCell align="right">{course?.date_open}</TableCell>
                     <TableCell align="right">
-                      <IconButton aria-label="delete" size="large">
-                        <VscTrash color="#c22727" />
-                      </IconButton>
+                      {course?.status ? (
+                        <Button variant="outlined" color="success" disableFocusRipple startIcon={<BsCheck2Circle />}>
+                          Đã xác nhận
+                        </Button>
+                      ) : (
+                        <Button variant="outlined" disableTouchRipple startIcon={<AiOutlineFieldTime />}>
+                          Chờ xác nhận
+                        </Button>
+                      )}
+                    </TableCell>
+
+                    <TableCell align="right">
+                      <Button variant="outlined" color="error" disableFocusRipple startIcon={<VscTrash />}>
+                        Hủy
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}

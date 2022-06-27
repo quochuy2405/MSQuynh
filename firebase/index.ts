@@ -90,18 +90,23 @@ const createStudent = async (student: Student) => {
 //find course by id user
 
 const getCourseById = async (user: Partial<User>) => {
-  const queryCheckStudent = query(collection(db, 'students'), where('user_id', '==', user.userId))
-  const listCourses = await getDocs(queryCheckStudent)
   const courseStudent: Array<Course> = []
-  for (let i = 0; i < listCourses.size; i++) {
-    const student = listCourses.docs.at(i)?.data()
-    const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1)).withConverter(courseConverter)
-    const courses = await getDocs(getCourse)
-    const course: PartialWithFieldValue<unknown | any> = courses.docs.at(0)?.data()
-    if (course) courseStudent.push(course)
-  }
+  try {
+    const queryCheckStudent = query(collection(db, 'students'), where('user_id', '==', user.userId))
+    const studentCheck = await getDocs(queryCheckStudent)
 
-  return courseStudent
+    for (let i = 0; i < studentCheck.size; i++) {
+      const student = studentCheck.docs.at(i)?.data()
+      const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1)).withConverter(courseConverter)
+      const courses = await getDocs(getCourse)
+      const course: PartialWithFieldValue<unknown | any> = courses.docs.at(0)?.data()
+      course.status = student?.status
+      if (course) courseStudent.push(course)
+    }
+    return courseStudent
+  } catch (error) {
+    return courseStudent
+  }
 }
 // authetication
 const loginGoogle = async () => {
