@@ -76,7 +76,7 @@ const RegisterFrom: NextPage = () => {
 
       student.birth_day = birthDate
       student.created_date = createdDate
-      console.log(student)
+
       const success = await createStudent(student)
 
       setOpen(true)
