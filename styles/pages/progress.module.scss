@@ -1,6 +1,6 @@
 @use '../../styles/abstracts/mixins' as *;
 .cellHeader {
-  color: white;
+  color: white !important;
   font-weight: 600;
   white-space: nowrap;
 }
