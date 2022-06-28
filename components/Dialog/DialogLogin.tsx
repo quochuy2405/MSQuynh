@@ -31,8 +31,12 @@ export default function DialogLogin({ open, setOpen }: { open: boolean; setOpen:
 
   const loginByFaceBook = async () => {
     const response = await loginFaceBook()
-
-    if (response) setOpen(false)
+    if (response) {
+      setOpen(false)
+      user.name = response?.user?.displayName
+      user.url = response?.user?.photoURL
+      user.userId = response?.user?.uid
+    }
   }
 
   return (

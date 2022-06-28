@@ -6,9 +6,9 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
 import Image from 'next/image'
-import { VscBook, VscCalendar } from 'react-icons/vsc'
-import { Fragment, useState } from 'react'
 import Link from 'next/link'
+import { Fragment, useState } from 'react'
+import { VscBook, VscCalendar } from 'react-icons/vsc'
 
 export default function AccountMenu({ user }: { user: Partial<User> }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -22,7 +22,7 @@ export default function AccountMenu({ user }: { user: Partial<User> }) {
   return (
     <Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Account settings">
+        <Tooltip title={user?.name}>
           <IconButton
             onClick={handleClick}
             size="small"

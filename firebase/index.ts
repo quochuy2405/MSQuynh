@@ -125,6 +125,7 @@ const loginFaceBook = async () => {
     const auth = getAuth()
 
     const response = await signInWithPopup(auth, facebookAuthProvider)
+    console.log(response)
     return response
   } catch (error) {
     return null
