@@ -3,7 +3,7 @@
 import type { Course, Student, User } from '@/types/interface'
 import { initializeApp } from 'firebase/app'
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth'
-import type { DocumentData, FirestoreDataConverter, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore/lite'
+import type { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot } from 'firebase/firestore/lite'
 import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
 import { getStorage } from 'firebase/storage'
 
@@ -30,14 +30,14 @@ const app = initializeApp(firebaseConfig)
 const storage = getStorage()
 const db = getFirestore(app)
 // converse type
-const userConverter: FirestoreDataConverter<User> = {
-  toFirestore(post: User): DocumentData {
-    return { ...post }
-  },
-  fromFirestore(docSnap: QueryDocumentSnapshot): User {
-    return docSnap.data() as User
-  }
-}
+// const userConverter: FirestoreDataConverter<User> = {
+//   toFirestore(post: User): DocumentData {
+//     return { ...post }
+//   },
+//   fromFirestore(docSnap: QueryDocumentSnapshot): User {
+//     return docSnap.data() as User
+//   }
+// }
 const courseConverter: FirestoreDataConverter<Course> = {
   toFirestore(post: Course): DocumentData {
     return { ...post }
@@ -98,9 +98,11 @@ const getCourseById = async (user: Partial<User>) => {
       const student = studentCheck.docs.at(i)?.data()
       const getCourse = query(collection(db, 'courses'), where('class_code', '==', student?.class_code), limit(1)).withConverter(courseConverter)
       const courses = await getDocs(getCourse)
-      const course: PartialWithFieldValue<unknown | any> = courses.docs.at(0)?.data()
-      course.status = student?.status
-      if (course) courseStudent.push(course)
+      if (courses.docs.at(0)) {
+        const course: Course = <Course>courses.docs.at(0)?.data()
+        course.status = student?.status
+        if (course) courseStudent.push(course)
+      }
     }
     return courseStudent
   } catch (error) {

@@ -5,11 +5,12 @@ import { AppCtx } from '@/Context/GlobalContext'
 import { logoutUser } from '@/firebase'
 import { changeLanguage, getLanguage } from '@/i18-next'
 import Logo from '@/public/logo.svg'
+import Loading from '@/public/loading.svg'
 import classnames from 'clsx'
 import { getAuth } from 'firebase/auth'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { MdLanguage } from 'react-icons/md'
 import Styles from './Header.module.scss'
 import { TiHomeOutline } from 'react-icons/ti'
@@ -23,7 +24,6 @@ function Header(): JSX.Element {
   const { locale } = router
   const { navlinks, btn } = getLanguage(locale || 'vi')
   const [onTop, setOnTop] = useState<boolean>(false)
-
   const links = [
     {
       name: navlinks.home,
@@ -62,7 +62,7 @@ function Header(): JSX.Element {
         })
       }
     })
-  }, [])
+  }, [login, setLogin, setUser])
 
   useEffect(() => {
     window.addEventListener('scroll', () => setOnTop(window.scrollY !== 0))

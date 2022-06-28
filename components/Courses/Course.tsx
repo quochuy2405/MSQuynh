@@ -4,7 +4,7 @@ import { AppCtx } from '@/Context/GlobalContext'
 import { storage } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import type { Course as TCourse } from '@/types/interface'
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
+import { Card, CardMedia } from '@mui/material'
 import { getDownloadURL, ref } from 'firebase/storage'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -24,7 +24,7 @@ function Course({ name, description, max_vol, current_vol, class_code, thumbnail
       .catch(() => {
         return ''
       })
-  }, [])
+  }, [thumbnail])
   const gotoRegister = () => {
     if (user.userId) {
       router.push(`/register-form?classid=${class_code}`)
