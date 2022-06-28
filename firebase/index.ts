@@ -2,7 +2,7 @@
 // import { Student } from '@/types/interface'
 import type { Course, Student, User } from '@/types/interface'
 import { initializeApp } from 'firebase/app'
-import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth'
 import type { DocumentData, FirestoreDataConverter, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore/lite'
 import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
 import { getDownloadURL, getStorage, ref } from 'firebase/storage'
@@ -113,7 +113,7 @@ const loginGoogle = async () => {
   try {
     const auth = getAuth()
 
-    const response = await signInWithPopup(auth, googleAuthProvider)
+    const response = await signInWithRedirect(auth, googleAuthProvider)
     return response
   } catch (error) {
     return null
@@ -124,7 +124,7 @@ const loginFaceBook = async () => {
   try {
     const auth = getAuth()
 
-    const response = await signInWithPopup(auth, facebookAuthProvider)
+    const response = await signInWithRedirect(auth, facebookAuthProvider)
     console.log(response)
     return response
   } catch (error) {
