@@ -5,7 +5,7 @@ import { initializeApp } from 'firebase/app'
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth'
 import type { DocumentData, FirestoreDataConverter, PartialWithFieldValue, QueryDocumentSnapshot } from 'firebase/firestore/lite'
 import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
-import { getDownloadURL, getStorage, ref } from 'firebase/storage'
+import { getStorage } from 'firebase/storage'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -125,7 +125,6 @@ const loginFaceBook = async () => {
     const auth = getAuth()
 
     const response = await signInWithRedirect(auth, facebookAuthProvider)
-    console.log(response)
     return response
   } catch (error) {
     return null
