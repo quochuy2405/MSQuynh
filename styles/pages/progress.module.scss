@@ -1,8 +1,8 @@
 @use '../../styles/abstracts/mixins' as *;
 .cellHeader {
   color: white !important;
-  font-weight: 600;
-  white-space: nowrap;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
 }
 .title {
   display: flex;
@@ -15,11 +15,11 @@
   }
 }
 .tableContainer {
-  width: 75%;
+  width: 75% !important;
   height: 60vh;
   margin: 50px auto;
   @include responsive('md') {
-    width: 95%;
+    width: 95% !important;
     height: 80vh;
     margin: 30px auto;
   }
