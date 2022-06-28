@@ -34,26 +34,20 @@ function Course({ name, description, max_vol, current_vol, class_code, thumbnail
   }
 
   return (
-    <Card className={Styles.course}>
-      <CardActionArea>
-        <CardMedia component="img" className={Styles.CardImage} image={url || link} alt={name} />
-        <CardContent>
-          <Typography className={Styles.title} gutterBottom variant="h5" component="div">
-            {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-            <div className={Styles.contentNumber}>
-              <p>
-                {courses.count}:{current_vol}/{max_vol}
-              </p>
-            </div>
-            <div className={Styles.btnRegister} onClick={() => gotoRegister()}>
-              {btn.register}
-            </div>
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+    <Card className={Styles.course} style={{ padding: '10px 20px' }}>
+      <CardMedia component="img" className={Styles.CardImage} image={url || link} alt={name} />
+      <p className={Styles.title}>{name}</p>
+      <div>
+        <p className={Styles.description}>
+          {description}
+          <p className={Styles.contentNumber}>
+            {courses.count}:{current_vol}/{max_vol}
+          </p>
+          <div className={Styles.btnRegister} onClick={() => gotoRegister()}>
+            {btn.register}
+          </div>
+        </p>
+      </div>
     </Card>
   )
 }

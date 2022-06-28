@@ -23,16 +23,31 @@
     box-shadow: 0 0 0 2px var(--color-base);
   }
 }
+.description {
+  font-size: 0.9rem;
+}
 .course {
   width: 345px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @include responsive('md') {
     min-width: 100%;
     width: 100%;
     margin: 0;
   }
 }
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
 .title {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: normal;
   @include responsive('sm') {
     font-size: 1.1rem;
   }
@@ -41,5 +56,6 @@
   }
 }
 .CardImage {
+  display: block;
   height: 160px;
 }

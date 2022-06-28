@@ -81,9 +81,6 @@ function Header(): JSX.Element {
             <div className={Styles.iconMobile}>{item?.icon}</div>
           </Navlink>
         ))}
-        <div className={Styles.iconMobile}>
-          <GiHamburgerMenu />
-        </div>
       </div>
       <div className={Styles.btnGroup}>
         {!user.userId ? (
@@ -92,7 +89,6 @@ function Header(): JSX.Element {
           </div>
         ) : (
           <>
-            {/* <Image src={user.url || ''} alt={user.name || ''} width={'30'} height={'30'} style={{ borderRadius: '100rem' }} /> */}
             <AccountMenu user={user} />
             <div className={Styles.btnRegister} onClick={() => logoutUser()}>
               <p>{btn.logout}</p>
@@ -105,6 +101,9 @@ function Header(): JSX.Element {
             {btn.changeLang}
           </p>
         </div>
+      </div>
+      <div className={Styles.iconMobile}>
+        <GiHamburgerMenu />
       </div>
     </div>
   )
