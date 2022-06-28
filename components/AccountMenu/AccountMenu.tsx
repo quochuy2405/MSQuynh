@@ -22,7 +22,7 @@ export default function AccountMenu({ user }: { user: Partial<User> }) {
   return (
     <Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title={user?.name}>
+        <Tooltip title={user?.name || ''}>
           <IconButton
             onClick={handleClick}
             size="small"
