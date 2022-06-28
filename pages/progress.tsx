@@ -37,7 +37,7 @@ const Register: NextPage = () => {
           <SiGoogletagmanager />
           <p>Danh sách xác nhận</p>
         </h1>
-        <TableContainer className={Styles.TableContainer}>
+        <TableContainer className={Styles.tableContainer}>
           {!loading ? (
             <Box>
               <Skeleton />
