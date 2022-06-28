@@ -1,3 +1,4 @@
+@use '../../styles/abstracts/mixins' as *;
 .loginGG,
 .loginFB {
   justify-content: center;
@@ -32,5 +33,10 @@
     background-color: white;
     box-shadow: 0 0 0 2px rgb(38, 38, 38);
     transition: all linear 0.2s;
+  }
+}
+.mobile {
+  @include responsive('md') {
+    display: none;
   }
 }

@@ -44,11 +44,11 @@ export default function DialogLogin({ open, setOpen }: { open: boolean; setOpen:
         </DialogContent>
         <div className={Styles.loginFB} onClick={() => loginByFaceBook()}>
           <FaFacebook size={25} />
-          <p>Continue with Facebook</p>
+          <p className={Styles.mobile}>Continue with Facebook</p>
         </div>
         <div className={Styles.loginGG} onClick={() => loginByGoogle()}>
           <FcGoogle size={25} />
-          <p>Continue with Google</p>
+          <p className={Styles.mobile}>Continue with Google</p>
         </div>
         <DialogActions>
           <Button onClick={handleClose}>Đóng</Button>
