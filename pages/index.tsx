@@ -36,7 +36,7 @@ const Home: NextPage = () => {
           <div className={Styles.overViewText}>
             <p className={Styles.overViewTitle}>{overview.title} </p>
             <p className={Styles.overViewDescription}>{overview.description}</p>
-            <Link href={'/register'}>
+            <Link href={'/courses'}>
               <p className={Styles.btnRegister}> {btn.register}</p>
             </Link>
           </div>

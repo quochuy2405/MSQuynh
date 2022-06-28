@@ -1,21 +1,21 @@
 /* eslint-disable @next/next/link-passhref */
 import { Footer, Header, Metadata } from '@/components'
+import { AppCtx } from '@/Context/GlobalContext'
 import { createStudent } from '@/firebase'
 import { getLanguage } from '@/i18-next'
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
-import { useRouter } from 'next/router'
-import React, { forwardRef, TextareaHTMLAttributes, useContext, useEffect, useState } from 'react'
-import { Box, Button, Checkbox, FormControlLabel, Grow, TextField } from '@mui/material'
-import type { Course, Student } from '@/types/interface'
-import type { NextPage } from '@/types/next'
-import type { AlertColor, AlertProps } from '@mui/material/Alert'
-import type { SnackbarOrigin } from '@mui/material/Snackbar'
 import Styles from '@/styles/pages/register-form.module.scss'
-import classnames from 'clsx'
-import MuiAlert from '@mui/material/Alert'
-import Snackbar from '@mui/material/Snackbar'
-import { AppCtx } from '@/Context/GlobalContext'
+import type { Student } from '@/types/interface'
+import type { NextPage } from '@/types/next'
 import { DatePicker } from '@mui/lab'
+import { Box, Checkbox, FormControlLabel, Grow, TextField } from '@mui/material'
+import type { AlertColor, AlertProps } from '@mui/material/Alert'
+import MuiAlert from '@mui/material/Alert'
+import type { SnackbarOrigin } from '@mui/material/Snackbar'
+import Snackbar from '@mui/material/Snackbar'
+import classnames from 'clsx'
+import { BsPen } from 'react-icons/bs'
+import { useRouter } from 'next/router'
+import React, { forwardRef, useContext, useEffect, useState } from 'react'
 
 interface Notice {
   message: string
@@ -107,7 +107,10 @@ const RegisterFrom: NextPage = () => {
         </Alert>
       </Snackbar>
       <form method="post" className={classnames(Styles.inputForm, 'body')} onSubmit={handleRegister}>
-        <p className={Styles.title}>{btn.register}</p>
+        <p className={Styles.title}>
+          <BsPen />
+          <p> {btn.register}</p>
+        </p>
         <div className={Styles.groupInput}>
           <Box width={'100%'} flexDirection="column" display={'flex'} gap={'20px'}>
             <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...{ timeout: 1000 }}>

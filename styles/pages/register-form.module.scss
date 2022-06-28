@@ -4,13 +4,32 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  @include responsive('md') {
+    width: 70%;
+    padding: 50px auto;
+  }
+  @include responsive('sm') {
+    width: 90%;
+    padding: 50px auto;
+  }
 }
 .title {
-  font-size: 3rem;
-  line-height: normal;
-  font-weight: 600;
   text-align: center;
   padding: 10px 0;
+  margin: 10px 0;
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  gap: 10px;
+  line-height: normal;
+  font-weight: 600;
+
+  @include responsive('md') {
+    font-size: 1.6rem;
+    margin: 20px 0;
+  }
 }
 .groupInput {
   display: flex;
@@ -28,4 +47,7 @@
   color: white;
   display: block;
   border: none;
+  @include responsive('md') {
+    width: 100%;
+  }
 }
