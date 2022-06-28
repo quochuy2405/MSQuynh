@@ -12,7 +12,11 @@ import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { MdLanguage } from 'react-icons/md'
 import Styles from './Header.module.scss'
-
+import { TiHomeOutline } from 'react-icons/ti'
+import { IoBookOutline } from 'react-icons/io5'
+import { IoMdContacts } from 'react-icons/io'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
 function Header(): JSX.Element {
   const { user, setUser, login, setLogin } = useContext(AppCtx)
   const router = useRouter()
@@ -23,19 +27,23 @@ function Header(): JSX.Element {
   const links = [
     {
       name: navlinks.home,
-      link: '/'
+      link: '/',
+      icon: <TiHomeOutline />
     },
     {
       name: navlinks.courses,
-      link: '/courses'
+      link: '/courses',
+      icon: <IoBookOutline />
     },
     {
       name: navlinks.about,
-      link: '/about'
+      link: '/about',
+      icon: <AiOutlineInfoCircle />
     },
     {
       name: navlinks.contact,
-      link: '/contact'
+      link: '/contact',
+      icon: <IoMdContacts />
     }
   ]
   useEffect(() => {
@@ -69,9 +77,13 @@ function Header(): JSX.Element {
       <div className={Styles.navLinks}>
         {links.map((item) => (
           <Navlink exact key={item.link + item.name} href={item.link} className="link">
-            {item?.name}
+            <p className={Styles.linkName}>{item?.name}</p>
+            <div className={Styles.iconMobile}>{item?.icon}</div>
           </Navlink>
         ))}
+        <div className={Styles.iconMobile}>
+          <GiHamburgerMenu />
+        </div>
       </div>
       <div className={Styles.btnGroup}>
         {!user.userId ? (

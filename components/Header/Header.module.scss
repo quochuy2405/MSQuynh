@@ -1,3 +1,4 @@
+@use '../../styles/abstracts/mixins' as *;
 .header {
   display: flex;
   justify-content: space-between;
@@ -8,8 +9,11 @@
   width: 100%;
   height: 70px;
   z-index: 999;
-
+  background-color: white;
   transition: all linear 0.3s;
+  @include responsive('sm') {
+    padding: 0 20px;
+  }
 }
 .logo {
   flex: 3;
@@ -23,22 +27,47 @@
     height: 60px !important;
     margin: auto;
   }
+  @include responsive('lg') {
+    display: none;
+  }
+}
+.iconMobile {
+  font-size: 25px;
+  color: rgb(48, 47, 47);
+  display: none;
+  @include responsive('sm') {
+    display: block;
+  }
+}
+.linkName {
+  @include responsive('sm') {
+    display: none;
+  }
 }
 .navLinks {
   flex: 2;
   display: flex;
   justify-content: space-around;
+  gap: 20px;
+
   a {
     color: #000;
     text-decoration: none;
     font-weight: 500;
+    white-space: nowrap;
   }
 }
 .btnGroup {
-  flex: 2;
+  flex: 1.5;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @include responsive('md') {
+    flex: 0.8;
+  }
+  @include responsive('sm') {
+    flex: none;
+  }
 }
 .btnLogin {
   box-shadow: 0 0 0px 2px var(--color-base);
@@ -53,6 +82,9 @@
     color: white;
     transform: scale(0.98);
   }
+  @include responsive('md') {
+    display: none;
+  }
 }
 .btnRegister {
   box-shadow: 0 0 0px 2px var(--color-base);
@@ -63,6 +95,9 @@
   background-color: var(--color-base);
   background-size: 200%;
   transition: all linear 0.2s;
+  @include responsive('md') {
+    display: none;
+  }
   &:hover {
     background-position: 100%;
     transition: all linear 0.2s;
@@ -85,6 +120,9 @@
   width: fit-content;
   height: 30px;
   font-weight: 600;
+  @include responsive('sm') {
+    display: none;
+  }
   & p {
     display: flex;
     justify-content: center;

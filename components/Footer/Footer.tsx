@@ -4,12 +4,12 @@ import Logo from '@/public/logo_white.svg'
 import Image from 'next/image'
 const Footer = (): JSX.Element => {
   return (
-    <div className={Styles.Footer}>
+    <div className={Styles.footer}>
       <div className={Styles.topFooter}>
         <div className={Styles.infoAddress}>
           <ul>
             <p className={Styles.colName}>
-              <Image src={Logo} alt="Logo " />
+              <Image className={Styles.logo} src={Logo} alt="Logo " />
             </p>
             <li>Phone number: 09636392012</li>
             <li>Email: contactmsquynh@gmail.com</li>

@@ -1,3 +1,4 @@
+@use '../../styles/abstracts/mixins' as *;
 .heading {
   text-align: center;
 }
@@ -6,16 +7,31 @@
   background-color: var(--color-page-background);
   display: flex;
   height: calc(100vh - var(--header-height));
+  @include responsive('md') {
+    flex-direction: column;
+    height: auto;
+    padding: 50px 0;
+    margin: 0 auto;
+  }
 }
 .overViewText {
   flex: 3;
   justify-self: center;
   align-self: center;
   padding: 5%;
+  @include responsive('lg') {
+    padding: 3%;
+  }
   .overViewTitle {
     font-size: 4rem;
     line-height: normal;
     font-weight: 700;
+    @include responsive('md') {
+      font-size: 3rem;
+    }
+    @include responsive('sm') {
+      font-size: 2rem;
+    }
   }
 }
 .overViewImage {
@@ -29,6 +45,10 @@
 .overViewListCourse {
   width: 75%;
   margin: 100px auto;
+  @include responsive('md') {
+    width: 90%;
+    margin: 40px auto;
+  }
 }
 .titleList {
   p {
@@ -37,18 +57,27 @@
     margin: 30px 10px;
     width: 50%;
     line-height: normal;
+    @include responsive('md') {
+      width: 100%;
+      margin: 0;
+      font-size: 2rem;
+    }
   }
 }
 .welcome {
-  width: 70%;
+  width: 80%;
   height: 60vh;
   margin: 100px auto;
   position: relative;
   display: flex;
   justify-content: space-evenly;
   background-color: var(--color-base);
-  border-radius: 40px;
+  border-radius: 10px;
   opacity: 0.9;
+  @include responsive('lg') {
+    width: 90%;
+  }
+
   .welcomeContent {
     flex: 1;
     height: 100%;
@@ -61,6 +90,12 @@
       font-size: 2.5rem;
       font-weight: bold;
       line-height: normal;
+      @include responsive('sm') {
+        font-size: 1.5rem;
+      }
+      @include responsive('md') {
+        font-size: 2rem;
+      }
     }
     .welcomeDescription {
       font-size: 1rem;
@@ -79,4 +114,30 @@
       object-fit: contain;
     }
   }
+}
+.btnRegister {
+  box-shadow: 0 0 0px 2px var(--color-base);
+  border-radius: 6px;
+  color: white;
+
+  background: linear-gradient(to right, var(--color-base) 50%, white 0%) left;
+  background-color: var(--color-base);
+  background-size: 200%;
+  transition: all linear 0.2s;
+  &:hover {
+    background-position: 100%;
+    transition: all linear 0.2s;
+    color: black;
+    transform: scale(0.98);
+  }
+}
+.btnRegister {
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  margin: auto 0;
+  line-height: 40px;
+  text-align: center;
+  font-weight: 600;
+  margin: 20px 0;
 }

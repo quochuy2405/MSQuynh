@@ -1,3 +1,4 @@
+@use '../../styles/abstracts/mixins' as *;
 .btnRegister {
   background-color: var(--color-base);
   width: 100px;
@@ -21,4 +22,24 @@
     transform: scale(0.98);
     box-shadow: 0 0 0 2px var(--color-base);
   }
+}
+.course {
+  width: 345px;
+  height: auto;
+  @include responsive('md') {
+    min-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
+.title {
+  @include responsive('sm') {
+    font-size: 1.1rem;
+  }
+  @include responsive('md') {
+    font-size: 1.3rem;
+  }
+}
+.CardImage {
+  height: 160px;
 }

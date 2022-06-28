@@ -1,4 +1,5 @@
-.Footer {
+@use '../../styles/abstracts/mixins' as *;
+.footer {
   width: 100%;
   max-height: fit-content;
   background-color: rgb(39, 39, 39);
@@ -7,8 +8,14 @@
   flex-direction: column;
   justify-content: space-evenly;
   color: white;
+  @include responsive('md') {
+    padding: 0;
+  }
   & ul {
     list-style: none;
+    @include responsive('md') {
+      padding: 10px;
+    }
     & li {
       padding: 2px 0;
       font-size: 0.9rem;
@@ -19,6 +26,14 @@
         opacity: 1;
         transition: all linear 0.1s;
       }
+    }
+  }
+  .logo {
+    @include responsive('md') {
+      transform: scale(0.7);
+    }
+    @include responsive('sm-1') {
+      transform: scale(0.5);
     }
   }
 }

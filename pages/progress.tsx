@@ -11,6 +11,9 @@ import { useContext, useEffect, useState } from 'react'
 import { VscTrash } from 'react-icons/vsc'
 import { BsCheck2Circle } from 'react-icons/bs'
 import { AiOutlineFieldTime } from 'react-icons/ai'
+import { SiGoogletagmanager } from 'react-icons/si'
+import Styles from '@/styles/pages/progress.module.scss'
+
 const Register: NextPage = () => {
   const { locale } = useRouter()
   const { user } = useContext(AppCtx)
@@ -30,7 +33,11 @@ const Register: NextPage = () => {
       <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
       <Header />
       <div className="body">
-        <TableContainer style={{ margin: '100px auto', width: '75%', minHeight: '60vh' }}>
+        <h1 className={Styles.title}>
+          <SiGoogletagmanager />
+          <p>Danh sách xác nhận</p>
+        </h1>
+        <TableContainer className={Styles.TableContainer}>
           {!loading ? (
             <Box>
               <Skeleton />
@@ -42,18 +49,18 @@ const Register: NextPage = () => {
             <Table style={{ borderRadius: '50px' }}>
               <TableHead style={{ backgroundColor: 'var(--color-base)' }}>
                 <TableRow>
-                  <TableCell style={{ color: 'white', fontWeight: '600' }}>Mã lớp</TableCell>
-                  <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
+                  <TableCell className={Styles.cellHeader}>Mã lớp</TableCell>
+                  <TableCell className={Styles.cellHeader} align="right">
                     Tên khóa học
                   </TableCell>
-                  <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
+                  <TableCell className={Styles.cellHeader} align="right">
                     Thời gian khai giảng
                   </TableCell>
 
-                  <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
+                  <TableCell className={Styles.cellHeader} align="right">
                     Tình trang đăng ký
                   </TableCell>
-                  <TableCell style={{ color: 'white', fontWeight: '600' }} align="right">
+                  <TableCell className={Styles.cellHeader} align="right">
                     Hủy đăng ký
                   </TableCell>
                 </TableRow>

@@ -47,15 +47,6 @@ const Courses: NextPage = () => {
           </div>
           <ListCourse list={courses} />
         </div>
-        <div className={Styles.welcome}>
-          <div className={Styles.welcomeContent}>
-            <p className={Styles.welcomeTitle}>{course_page.developQualityTitle}</p>
-            <p className={Styles.welcomeDescription}>{course_page.developQualityDes}</p>
-          </div>
-          <div className={Styles.imgContent}>
-            <Image src={teacher} alt="teacher" />
-          </div>
-        </div>
       </div>
       <Footer />
     </>

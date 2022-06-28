@@ -34,11 +34,11 @@ function Course({ name, description, max_vol, current_vol, class_code, thumbnail
   }
 
   return (
-    <Card sx={{ minWidth: 345 }}>
+    <Card className={Styles.course}>
       <CardActionArea>
-        <CardMedia component="img" height="140" image={url || link} alt={name} />
+        <CardMedia component="img" className={Styles.CardImage} image={url || link} alt={name} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography className={Styles.title} gutterBottom variant="h5" component="div">
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
