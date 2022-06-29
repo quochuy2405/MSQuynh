@@ -23,11 +23,11 @@
     padding: 3%;
   }
   .overViewTitle {
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: normal;
     font-weight: 700;
     @include responsive('md') {
-      font-size: 3rem;
+      font-size: 2rem;
     }
     @include responsive('sm') {
       font-size: 2rem;
@@ -43,7 +43,7 @@
   }
 }
 .overViewListCourse {
-  width: 75%;
+  width: 80%;
   margin: 100px auto;
   @include responsive('md') {
     width: 90%;
@@ -52,7 +52,7 @@
 }
 .titleList {
   p {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 800;
     margin: 30px 10px;
     width: 50%;

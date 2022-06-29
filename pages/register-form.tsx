@@ -101,7 +101,7 @@ const RegisterFrom: NextPage = () => {
     <>
       <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
       <Header />
-      <Snackbar open={open} anchorOrigin={{ ...position }} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={open} anchorOrigin={{ ...position }} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={notice.type || 'info'} sx={{ width: '100%' }}>
           {notice.message || 'Nothing!!!'}
         </Alert>

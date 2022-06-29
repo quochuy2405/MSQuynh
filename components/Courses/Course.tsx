@@ -34,7 +34,7 @@ function Course({ name, description, max_vol, current_vol, class_code, thumbnail
   }
 
   return (
-    <Card className={Styles.course} style={{ padding: '10px 20px' }}>
+    <Card className={Styles.course}>
       <CardMedia component="img" className={Styles.CardImage} image={url || link} alt={name} />
       <p className={Styles.title}>{name}</p>
       <div>

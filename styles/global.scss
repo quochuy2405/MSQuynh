@@ -5,6 +5,7 @@
 body {
   color: var(--color-text-default);
   background-color: var(--color-page-background);
+  position: relative;
 }
 a.active p,
 a.active svg {

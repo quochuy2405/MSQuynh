@@ -1,21 +1,17 @@
 /* eslint-disable @next/next/link-passhref */
 import { Footer, Header, ListCourse, Metadata } from '@/components'
+import { AppCtx } from '@/Context/GlobalContext'
+import { getCourses } from '@/firebase'
 import { getLanguage } from '@/i18-next'
 import Styles from '@/styles/pages/courses.module.scss'
 import type { Course } from '@/types/interface'
 import type { NextPage } from '@/types/next'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import teacher from '@/public/imgquynh.png'
 import { useContext, useEffect, useState } from 'react'
-import { getCourses } from '@/firebase'
-import { AppCtx } from '@/Context/GlobalContext'
-const listCourse: Array<Course> = []
 
 const Courses: NextPage = () => {
   const { locale } = useRouter()
-  const { course_page, btn } = getLanguage(locale || 'vi')
+  const { course_page } = getLanguage(locale || 'vi')
   const [courses, setCourses] = useState<Array<Course>>()
   const { setLoadingCourse } = useContext(AppCtx)
   useEffect(() => {

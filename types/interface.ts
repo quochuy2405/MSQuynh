@@ -1,3 +1,5 @@
+import type { AlertColor } from '@mui/material'
+
 interface Course {
   name: string
   description?: string
@@ -34,4 +36,10 @@ interface ImageType {
   height?: string | number | undefined
   layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive' | 'raw' | undefined
 }
-export type { Student, Course, User, ImageType }
+
+interface Notice {
+  open: boolean
+  message: string
+  type: AlertColor
+}
+export type { Student, Course, User, ImageType, Notice }

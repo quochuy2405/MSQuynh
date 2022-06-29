@@ -39,6 +39,11 @@
     display: block;
   }
 }
+.iconDestop {
+  @include responsive('sm') {
+    display: none;
+  }
+}
 .linkName {
   @include responsive('sm') {
     display: none;
@@ -60,6 +65,7 @@
 .btnGroup {
   flex: 1.5;
   display: flex;
+  gap: 10px;
   justify-content: space-around;
   align-items: center;
   @include responsive('md') {
@@ -82,9 +88,9 @@
     color: white;
     transform: scale(0.98);
   }
-  @include responsive('md') {
-    display: none;
-  }
+  // @include responsive('md') {
+  //   display: none;
+  // }
 }
 .btnRegister {
   box-shadow: 0 0 0px 2px var(--color-base);
@@ -114,6 +120,19 @@
   line-height: 40px;
   text-align: center;
   font-weight: 600;
+  @include responsive('md') {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover svg {
+      color: white;
+      transition: all linear 0.2s;
+    }
+  }
 }
 .btnChangeLang {
   cursor: pointer;
@@ -131,7 +150,7 @@
   }
 }
 .onTop {
-  background-color: rgba(255, 255, 255, 0.925);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 0 4px 2px rgba(138, 138, 138, 0.667);
   transition: all linear 0.3s;
 }
