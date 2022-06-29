@@ -121,11 +121,12 @@
   text-align: center;
   font-weight: 600;
   @include responsive('md') {
-    width: 90px;
+    width: 100px;
     margin: 0 10px;
     height: 30px;
     line-height: 30px;
     font-size: 0.7rem;
+    white-space: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
