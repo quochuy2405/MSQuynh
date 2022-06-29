@@ -2,7 +2,7 @@
 // import { Student } from '@/types/interface'
 import type { Course, Student, User } from '@/types/interface'
 import { initializeApp } from 'firebase/app'
-import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth'
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import type { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot } from 'firebase/firestore/lite'
 import { collection, doc, getDocs, getFirestore, limit, query, setDoc, where } from 'firebase/firestore/lite'
 import { getStorage } from 'firebase/storage'
@@ -30,14 +30,14 @@ const app = initializeApp(firebaseConfig)
 const storage = getStorage()
 const db = getFirestore(app)
 // converse type
-// const userConverter: FirestoreDataConverter<User> = {
-//   toFirestore(post: User): DocumentData {
-//     return { ...post }
-//   },
-//   fromFirestore(docSnap: QueryDocumentSnapshot): User {
-//     return docSnap.data() as User
-//   }
-// }
+const userConverter: FirestoreDataConverter<User> = {
+  toFirestore(post: User): DocumentData {
+    return { ...post }
+  },
+  fromFirestore(docSnap: QueryDocumentSnapshot): User {
+    return docSnap.data() as User
+  }
+}
 const courseConverter: FirestoreDataConverter<Course> = {
   toFirestore(post: Course): DocumentData {
     return { ...post }
@@ -114,7 +114,7 @@ const loginGoogle = async () => {
   try {
     const auth = getAuth()
 
-    const response = await signInWithRedirect(auth, googleAuthProvider)
+    const response = await signInWithPopup(auth, googleAuthProvider)
     return response
   } catch (error) {
     return null
@@ -125,7 +125,7 @@ const loginFaceBook = async () => {
   try {
     const auth = getAuth()
 
-    const response = await signInWithRedirect(auth, facebookAuthProvider)
+    const response = await signInWithPopup(auth, facebookAuthProvider)
     return response
   } catch (error) {
     return null
