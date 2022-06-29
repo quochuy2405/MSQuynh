@@ -23,14 +23,14 @@
     padding: 3%;
   }
   .overViewTitle {
-    font-size: 4rem;
+    font-size: 2.5rem;
     line-height: normal;
     font-weight: 700;
     @include responsive('md') {
-      font-size: 3rem;
+      font-size: 1.8rem;
     }
     @include responsive('sm') {
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
   }
 }
@@ -66,13 +66,14 @@
 }
 .welcome {
   width: 80%;
-  height: 60vh;
+  height: 45vh;
   margin: 100px auto;
   position: relative;
   display: flex;
   justify-content: space-evenly;
   background-color: var(--color-base);
-  border-radius: 10px;
+  border-radius: 40px;
+  padding: 0 40px;
   opacity: 0.9;
   @include responsive('lg') {
     width: 90%;
@@ -87,8 +88,8 @@
     padding: 20px;
     color: white;
     .welcomeTitle {
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 2rem;
+      font-weight: 800;
       line-height: normal;
       @include responsive('sm') {
         font-size: 1.5rem;
@@ -98,16 +99,23 @@
       }
     }
     .welcomeDescription {
-      font-size: 1rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      width: 80%;
     }
   }
 
   .imgContent {
-    flex: 1;
-    height: 100%;
+    height: 250px;
+    width: 250px;
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-self: flex-end;
+    justify-content: center;
+    background-color: white;
+    border-radius: 100rem;
+    box-shadow: 0 0 0px 20px rgba(255, 251, 244, 0.353);
     img {
       width: 100%;
       height: 100%;
