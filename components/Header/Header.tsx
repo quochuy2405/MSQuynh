@@ -100,9 +100,9 @@ function Header(): JSX.Element {
     getAuth().onAuthStateChanged((u) => {
       if (u) {
         setUser({
-          name: u.displayName,
-          url: u.photoURL,
-          userId: u.uid
+          name: u?.displayName,
+          url: u?.photoURL,
+          userId: u?.uid
         })
       } else {
         setUser({
