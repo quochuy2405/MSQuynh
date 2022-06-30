@@ -57,6 +57,10 @@
     margin: 30px 10px;
     width: 50%;
     line-height: normal;
+    @include responsive('md') {
+      width: 90%;
+      margin: 20px auto;
+    }
   }
 }
 .welcome {

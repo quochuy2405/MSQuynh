@@ -1,0 +1,54 @@
+@use '../../styles/abstracts/mixins' as *;
+.loginGG,
+.loginFB {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 30%;
+  height: 4 0px;
+  gap: 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: all linear 0.2s;
+  @include responsive('md') {
+    font-size: 0.8rem;
+  }
+}
+.loginFB {
+  background-color: #1877f2;
+  color: white;
+  box-shadow: 0 0 0 2px #1877f2;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+    background-color: #006cfa;
+    transition: all linear 0.2s;
+    box-shadow: 0 0 0 2px rgb(38, 38, 38);
+  }
+}
+.loginGG {
+  color: rgb(97, 97, 97);
+  background-color: #ececec;
+  box-shadow: 0 0 0 2px rgb(205, 204, 204);
+  &:hover {
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(38, 38, 38);
+    transition: all linear 0.2s;
+  }
+}
+.mobile {
+  @include responsive('md') {
+    display: none;
+  }
+}
+.title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  @include responsive('md') {
+    font-size: 0.9rem;
+  }
+}

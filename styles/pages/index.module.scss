@@ -23,7 +23,7 @@
     padding: 3%;
   }
   .overViewTitle {
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: normal;
     font-weight: 700;
     @include responsive('md') {
@@ -55,6 +55,7 @@
     font-size: 2.5rem;
     font-weight: 800;
     margin: 30px 10px;
+    padding: 0 10px;
     width: 50%;
     line-height: normal;
     @include responsive('md') {
@@ -77,6 +78,7 @@
   opacity: 0.9;
   @include responsive('lg') {
     width: 90%;
+    padding: 20px;
   }
 
   .welcomeContent {
@@ -87,21 +89,42 @@
     justify-content: center;
     padding: 20px;
     color: white;
+    @include responsive('md') {
+      padding: 5px;
+    }
     .welcomeTitle {
       font-size: 2rem;
       font-weight: 800;
       line-height: normal;
+      display: -webkit-box;
+
       @include responsive('sm') {
         font-size: 1.5rem;
       }
       @include responsive('md') {
         font-size: 2rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     .welcomeDescription {
       font-size: 0.8rem;
       font-weight: 400;
       width: 80%;
+      @include responsive('sm') {
+        font-size: 0.7rem;
+      }
+      @include responsive('md') {
+        font-size: 0.7rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 

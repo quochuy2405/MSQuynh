@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { AccountMenu, Navlink } from '@/components'
-import DialogLogin from '@/components/Dialog/DialogLogin'
+import { DialogLogin, DialogLogout } from '@/components/Dialog'
 import { AppCtx } from '@/Context/GlobalContext'
 import { logoutUser } from '@/firebase'
 import { changeLanguage, getLanguage } from '@/i18-next'
@@ -39,9 +39,13 @@ function Header(): JSX.Element {
   const { locale } = router
   const { navlinks, btn } = getLanguage(locale || 'vi')
   const [onTop, setOnTop] = useState<boolean>(false)
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const [openSpeed, setOpenSpeed] = useState(false)
+  const [popUpLogout, setPopUpLogout] = useState(false)
+  const handleOpenSpeed = () => setOpenSpeed(true)
+  const handleCloseSpeed = () => setOpenSpeed(false)
+  const handelLogout = () => {
+    setPopUpLogout(true)
+  }
   const [notice, setNotice] = useState<Notice>({
     open: false,
     message: '',
@@ -52,7 +56,7 @@ function Header(): JSX.Element {
     if (router) {
       router.push(link)
     }
-    setOpen(false)
+    setOpenSpeed(false)
   }
   const links = [
     {
@@ -85,14 +89,23 @@ function Header(): JSX.Element {
       action: user.userId ? () => logoutUser() : void 0
     },
     { view: true, icon: <MdManageAccounts />, name: 'Quản lý khóa học', action: () => handleRedirect('/progress') },
-    { view: true, icon: <MdLanguage />, name: 'Chuyển đổi ngôn ngữ', action: () => changeLanguage(locale || 'vi', router) },
+    {
+      view: true,
+      icon: <MdLanguage />,
+      name: 'Chuyển đổi ngôn ngữ',
+      action: () => {
+        changeLanguage(locale || 'vi', router)
+        handleCloseSpeed()
+      }
+    },
     {
       view: true,
       icon: <AiOutlineShareAlt />,
       name: 'Share',
       action: () => {
-        navigator.clipboard.writeText(router.asPath)
+        navigator.clipboard.writeText('https://msquynh.vercel.app/')
         setNotice({ message: 'Đã copy link', type: 'success', open: true })
+        handleCloseSpeed()
       }
     }
   ]
@@ -127,9 +140,9 @@ function Header(): JSX.Element {
       </Snackbar>
       <div className={Styles.iconMobile} style={{ position: 'fixed', bottom: 0, right: 16, zIndex: 9999 }}>
         <SpeedDial
-          onClose={handleClose}
-          onOpen={handleOpen}
-          open={open}
+          onClose={handleCloseSpeed}
+          onOpen={handleOpenSpeed}
+          open={openSpeed}
           ariaLabel="SpeedDial basic example"
           sx={{ position: 'absolute', bottom: 16, right: 16 }}
           icon={<GiHamburgerMenu />}
@@ -152,6 +165,7 @@ function Header(): JSX.Element {
 
       <div className={classnames(Styles.header, onTop && Styles.onTop)}>
         <DialogLogin open={login} setOpen={setLogin} />
+        <DialogLogout open={popUpLogout} setOpen={setPopUpLogout} />
         <div className={Styles.logo}>
           <Image src={Logo} alt="logo" />
         </div>
@@ -165,14 +179,16 @@ function Header(): JSX.Element {
         </div>
         <div className={Styles.btnGroup}>
           {!user.userId ? (
-            <div className={Styles.btnLogin} onClick={() => setLogin(true)}>
-              <TbLogin className={Styles.iconMobile} />
+            <div className={classnames(Styles.btnLogin)} onClick={() => setLogin(true)}>
+              {/* <TbLogin className={Styles.iconMobile} /> */}
               <p>{btn.login}</p>
             </div>
           ) : (
             <>
               <AccountMenu user={user} />
-              <div className={classnames(Styles.btnRegister && Styles.iconDestop)} onClick={() => logoutUser()}></div>
+              <div className={classnames(Styles.iconDestop && Styles.btnRegister)} onClick={() => handelLogout()}>
+                <p>{btn.logout}</p>
+              </div>
             </>
           )}
           <div className={Styles.btnChangeLang} onClick={() => changeLanguage(locale || 'vi', router)}>

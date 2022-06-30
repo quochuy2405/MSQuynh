@@ -12,9 +12,9 @@ const SET = {
     courses: "Courses",
   },
    btn:{
-    login: "Login",
+    login: "Sign in",
      register: "Register ",
-    logout: "Sign Out ",
+    logout: "Sign out ",
     sendMail: "Send Email",
     changeLang:"VI"
   },
@@ -26,7 +26,7 @@ const SET = {
     count:"Count"
   },
   home_page: {
-    findTheCourse: "Find The Course You Want",
+    findTheCourse: "Find The Course",
     developQualityTitle: "Develop Your Quality",
     developQualityDes:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime eligendi ex voluptatem aut consectetur hic vitae esse odio tempora"
   },

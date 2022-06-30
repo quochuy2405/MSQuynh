@@ -102,7 +102,7 @@
   background-size: 200%;
   transition: all linear 0.2s;
   @include responsive('md') {
-    display: none;
+    display: none !important;
   }
   &:hover {
     background-position: 100%;
