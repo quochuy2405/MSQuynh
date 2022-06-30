@@ -13,6 +13,7 @@ import SpeedDial from '@mui/material/SpeedDial'
 import classnames from 'clsx'
 import { getAuth } from 'firebase/auth'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, useContext, useEffect, useState } from 'react'
 import { AiOutlineInfoCircle, AiOutlineLogout, AiOutlineShareAlt } from 'react-icons/ai'
@@ -73,11 +74,6 @@ function Header(): JSX.Element {
       name: navlinks.about,
       link: '/about',
       icon: <AiOutlineInfoCircle />
-    },
-    {
-      name: navlinks.contact,
-      link: '/contact',
-      icon: <IoMdContacts />
     }
   ]
 
@@ -167,7 +163,9 @@ function Header(): JSX.Element {
         <DialogLogin open={login} setOpen={setLogin} />
         <DialogLogout open={popUpLogout} setOpen={setPopUpLogout} />
         <div className={Styles.logo}>
-          <Image src={Logo} alt="logo" />
+          <Link href={'/'} passHref={true}>
+            <Image src={Logo} alt="logo" />
+          </Link>
         </div>
         <div className={Styles.navLinks}>
           {links.map((item) => (

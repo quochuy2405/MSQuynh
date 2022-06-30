@@ -23,7 +23,7 @@ const SET = {
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero natus aliquam aspernatur nobis ipsam rerum vero soluta numquam iusto porro ea ad molestias optio et, architecto ab. Totam, sint fuga!",
   },
   courses: {
-    count:"Count"
+    count:"Registed"
   },
   home_page: {
     findTheCourse: "Find The Course",
@@ -45,5 +45,21 @@ const SET = {
     developQualityTitle: "Develop Your Quality",
     developQualityDes:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime eligendi ex voluptatem aut consectetur hic vitae esse odio tempora"
   },
+  progress_page: {
+    titleList: 'Manager Courses ',
+    headerTable: {
+      col1: 'Class ID',
+      col2: 'Course Name',
+      col3: 'Student Name',
+      col4: 'Start date',
+      col5: 'Status',
+      col6: 'Cancel',
+    },
+    button: {
+      accept: "Accepted",
+      wait: "Awating",
+      reject:'Reject'
+    }
+   }
 }
 export default SET;

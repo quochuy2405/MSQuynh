@@ -22,7 +22,7 @@ const SET = {
     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero natus aliquam aspernatur nobis ipsam rerum vero soluta numquam iusto porro ea ad molestias optio et, architecto ab. Totam, sint fuga!",
   },
   courses: {
-    count: "Số lượng"
+    count: "Đã đăng ký"
   },
   home_page: {
     findTheCourse: "Tìm kiếm khóa học bạn muốn",
@@ -44,5 +44,21 @@ const SET = {
     developQualityTitle: "Develop Your Quality",
     developQualityDes:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime eligendi ex voluptatem aut consectetur hic vitae esse odio tempora"
   },
+  progress_page: {
+    titleList: 'Danh sách xác nhận',
+    headerTable: {
+      col1: 'Mã lớp',
+      col2: 'Tên khóa học',
+      col3: 'Tên học sinh',
+      col4:'Thời gian khai giảng',
+      col5: 'Trạng thái',
+      col6: 'Hủy bỏ',
+    },
+    button: {
+      accept: "Đã xác nhận",
+      wait: "Chờ xác nhận",
+      reject:'Hủy'
+    }
+   }
 }
 export default SET;

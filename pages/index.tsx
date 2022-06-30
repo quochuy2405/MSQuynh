@@ -29,7 +29,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
+      <Metadata title="Trang chủ - Ms.Quynh" description="Trang chủ - Ms.Quynh" />
       <Header />
       <div className="body">
         <div className={Styles.overView}>

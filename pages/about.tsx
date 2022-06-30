@@ -15,7 +15,7 @@ const About: NextPage = () => {
 
   return (
     <>
-      <Metadata title="About - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
+      <Metadata title="Giới thiệu - Ms.Quynh" description="Giới thiệu - Ms.Quynh" />
       <Header />
       <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="body">
         <h1>Chúng tôi là ai?</h1>

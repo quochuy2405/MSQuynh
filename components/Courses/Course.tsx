@@ -41,7 +41,7 @@ function Course({ name, description, max_vol, current_vol, class_code, thumbnail
         <p className={Styles.description}>
           {description}
           <p className={Styles.contentNumber}>
-            {courses.count}:{current_vol}/{max_vol}
+            {courses.count}: {current_vol}/{max_vol}
           </p>
           <div className={Styles.btnRegister} onClick={() => gotoRegister()}>
             {btn.register}

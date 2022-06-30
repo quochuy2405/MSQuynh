@@ -101,6 +101,7 @@ const getCourseById = async (user: Partial<User>) => {
       if (courses.docs.at(0)) {
         const course: Course = <Course>courses.docs.at(0)?.data()
         course.status = student?.status
+        course.student_name = student?.name
         if (course) courseStudent.push(course)
       }
     }

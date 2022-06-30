@@ -25,7 +25,7 @@ const Courses: NextPage = () => {
   }, [])
   return (
     <>
-      <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
+      <Metadata title="Khóa học - Ms.Quynh" description="Khóa học - Ms.Quynh" />
       <Header />
       <div className="body">
         <div className={Styles.overView}>

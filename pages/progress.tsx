@@ -18,7 +18,7 @@ const Register: NextPage = () => {
   const { locale } = useRouter()
   const { user } = useContext(AppCtx)
   const [listCourse, setListCode] = useState<Array<Course>>([])
-  const { overview, btn, home_page } = getLanguage(locale || 'vi')
+  const { progress_page } = getLanguage(locale || 'vi')
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const fetch = async () => {
@@ -30,17 +30,17 @@ const Register: NextPage = () => {
   }, [user?.userId])
   return (
     <>
-      <Metadata title="Trang chủ - Ms.Quynh Courses" description="Trang chủ - Ms.Quynh Courses" />
+      <Metadata title="Quản lý khóa học - Ms.Quynh" description="Quản lý khóa học - Ms.Quynh" />
       <Header />
       <div className="body">
         <h1 className={Styles.title}>
           <SiGoogletagmanager />
-          <p>Danh sách xác nhận</p>
+          <p>{progress_page?.titleList}</p>
         </h1>
         <TableContainer className={Styles.tableContainer}>
           {!loading ? (
             <Box>
-              <Skeleton />
+              <Skeleton height={100} />
               <Skeleton />
               <Skeleton />
               <Skeleton />
@@ -49,20 +49,13 @@ const Register: NextPage = () => {
             <Table style={{ borderRadius: '50px' }}>
               <TableHead style={{ backgroundColor: 'var(--color-base)' }}>
                 <TableRow>
-                  <TableCell className={Styles.cellHeader}>Mã lớp</TableCell>
-                  <TableCell className={Styles.cellHeader} align="right">
-                    Tên khóa học
-                  </TableCell>
-                  <TableCell className={Styles.cellHeader} align="right">
-                    Thời gian khai giảng
-                  </TableCell>
+                  <TableCell className={Styles.cellHeader}>{progress_page?.headerTable?.col1}</TableCell>
+                  <TableCell className={Styles.cellHeader}>{progress_page?.headerTable?.col2}</TableCell>
+                  <TableCell className={Styles.cellHeader}>{progress_page?.headerTable?.col3}</TableCell>
+                  <TableCell className={Styles.cellHeader}>{progress_page?.headerTable?.col4}</TableCell>
 
-                  <TableCell className={Styles.cellHeader} align="right">
-                    Tình trang đăng ký
-                  </TableCell>
-                  <TableCell className={Styles.cellHeader} align="right">
-                    Hủy đăng ký
-                  </TableCell>
+                  <TableCell className={Styles.cellHeader}>{progress_page?.headerTable?.col5}</TableCell>
+                  <TableCell className={Styles.cellHeader}>{progress_page?.headerTable?.col6}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -71,23 +64,25 @@ const Register: NextPage = () => {
                     <TableCell component="th" scope="row">
                       {course?.class_code}
                     </TableCell>
-                    <TableCell align="right">{course?.name}</TableCell>
-                    <TableCell align="right">{course?.date_open}</TableCell>
-                    <TableCell align="right">
+
+                    <TableCell>{course?.name}</TableCell>
+                    <TableCell>{course?.student_name}</TableCell>
+                    <TableCell>{course?.date_open}</TableCell>
+                    <TableCell>
                       {course?.status ? (
                         <Button variant="outlined" color="success" disableFocusRipple startIcon={<BsCheck2Circle />}>
-                          Đã xác nhận
+                          {progress_page?.button?.accept}
                         </Button>
                       ) : (
                         <Button variant="outlined" disableTouchRipple startIcon={<AiOutlineFieldTime />}>
-                          Chờ xác nhận
+                          {progress_page?.button?.wait}
                         </Button>
                       )}
                     </TableCell>
 
-                    <TableCell align="right">
+                    <TableCell>
                       <Button variant="outlined" color="error" disableFocusRipple startIcon={<VscTrash />}>
-                        Hủy
+                        {progress_page?.button?.reject}
                       </Button>
                     </TableCell>
                   </TableRow>

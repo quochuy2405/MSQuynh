@@ -10,6 +10,7 @@ interface Course {
   date_open: string
   created_date: string
   status?: number
+  student_name?: string
 }
 interface Student {
   name: string
